@@ -1,0 +1,17 @@
+body{
+	margin: 0px;
+}
+
+.card{
+	margin-top: 1%; 
+   margin-left: 16.5%;
+   height: 600px;
+   width: 60%;
+   display: inline-block;
+   box-shadow: 25px 30px 20px #b2b7bf;
+   border-radius: 25px;
+   float: left;
+   padding: 25px;
+   background-image: linear-gradient(#ffffff,#b7dae8);
+}
+

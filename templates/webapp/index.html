@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+
+{% block title  %}
+    home  
+{% endblock title  %}
+
+{% block content %}
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./project.css">
+	</head>
+	<body>
+		<div class="top-div">
+		</div>
+		<div class="main-div">
+		 <div class="buttons-ka-div">
+		 <a href="/login_guest">
+           <button type="button" class="btn btn-info b1">GUEST LOGIN</button>
+		   </a>
+		   <a href="/login_manager">
+           <button type="button" class="btn btn-dark b2">MANAGER LOGIN</button>
+		   </a>
+         </div>
+        </div>
+	</body>
+</html>
+{% endblock content %}
