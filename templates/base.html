@@ -22,23 +22,33 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav navbar-nav ml-auto">
+    <li class="nav-item active dropdown mx-4">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/login_guest">as Guest</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/login_manager">as Manager</a>
+        </div>
+      </li>
+       <li class="nav-item active dropdown mx-4">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Register
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/register_guest">as Guest</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/register_manager">as Manager</a>
+        </div>
+      </li>
       <li class="nav-item active mx-4">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item mx-4">
+      <li class="nav-item active mx-4">
         <a class="nav-link" href="#">My Fav</a>
       </li>
-      <li class="nav-item dropdown mx-4">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+      
     </ul>
   </div>
 </nav>

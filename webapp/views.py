@@ -6,11 +6,7 @@ from webapp.models import Restaurant
 def index(request) :
      return render(request,'webapp/index.html')
 
-def login_guest(request) :
-     return render(request,'webapp/login_guest.html') 
-
-def login_manager(request) :
-     return render(request,'webapp/login_manager.html')     
+   
 
 def res_list(request):
      res = Restaurant.objects.all()

@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 # Representing guest to a restaurant 
 class Guest(models.Model) :
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
-    address = models.TextField(null=True,blank=True)
 
     def __str__(self):
         return self.user.username
