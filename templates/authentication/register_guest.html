@@ -23,28 +23,44 @@
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 					<h3 class="register-heading">Register as Guest </h3>
+					<form action="/register_guest" method="post">
+					{% csrf_token %}
+					
 					<div class="row register-form">
+					
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="username *" value="" />
+								<input name="username" required type="text" class="form-control" placeholder="username *" value="{{ username }}" />
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password *" value="" />
+								<input name="password1" required type="password" class="form-control" placeholder="Password *" value="" />
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+								<input name="password2" required type="password" class="form-control"  placeholder="Confirm Password *" value="" />
 							</div>
 						</div>
 						<div class="col-md-6">
 							<input type="submit" class="btnRegister"  value="Register"/>
 						</div>
 					</div>
+					</form>
+					
 				</div>
 			</div>
 		</div>
+		
 	</div>
 
 </div>                            
 
-
-{% endblock content %}
+                 {% if messages %}
+                        {% for message in messages %}
+                        <div class="message">
+                            <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="$('.alert').remove()">&times;</button>
+                                {{message}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+             {% endblock content %}
