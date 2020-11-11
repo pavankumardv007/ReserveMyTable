@@ -29,25 +29,29 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Continue</a>
                 </li>
             </ul>
+             <form action="/register_manager" method="post">
+					{% csrf_token %}
             <div class="tab-content" id="myTabContent">
+            
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Register as Manager</h3>
+                    	
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="username *" value="" />
+                                <input name="username" required type="text" class="form-control" placeholder="username *" value="{{ username }}" />
                             </div>
                              <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Your Email *" value="" />
+                                <input name="email" required type="email" class="form-control" placeholder="Your Email *" value="{{ email }}" />
                             </div>
                         </div>
                         <div class="col-md-6 py-5">
                            
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password *" value="" />
+                                <input name="password1" required type="password" class="form-control" placeholder="Password *" value="" />
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                                <input name="password2" required type="password" class="form-control"  placeholder="Confirm Password *" value="" />
                             </div>
                         </div>
                     </div>
@@ -57,21 +61,21 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name *" value="" />
+                                <input name="res_name" required type="text" class="form-control" placeholder="Name *" value="{{ res_name }}" />
                             </div>
                             <div class="form-group">
-                             <textarea class="form-control"  placeholder="description *" rows="3"></textarea>
+                             <textarea name="desc" class="form-control"  placeholder="description *" rows="3" value="{{ desc }}"></textarea>
 
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email *" value="" />
+                                <input  name="res_email" required type="email" class="form-control" placeholder="Email *" value="{{ res_email }}" />
                             </div>
                             <div class="form-group">
-                                <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Contact No. *" value="" />
+                                <input name="contact" required type="text" maxlength="10" minlength="10" class="form-control" placeholder="Contact No. *" value="{{ contact }}" />
                             </div>
                             <div class="form-group">
                                <label for="exampleFormControlFile1">Restaurant Profile Image</label>
-                               <input type="file" accept="image/*"  class="form-control-file" id="exampleFormControlFile1">
+                               <input name="profile" required type="file" accept="image/*"  class="form-control-file" value="{{ profile }}">
                             </div>
 
 
@@ -79,21 +83,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="appt">opening time:</label>
-                                <input type="time" class="form-control" name="appt">
+                                <input name="open_time" required type="time" class="form-control" value="{{ open_time }}">
                             </div>
                             <div class="form-group">
-                              <label for="appt">opening time:</label>
-                                <input type="time" class="form-control" name="appt">
+                              <label for="appt">closing time:</label>
+                                <input name="close_time" required type="time" class="form-control" value="{{ close_time }}">
                             </div>
                             <div class="form-group">
                                
                             </div>
                             <div class="form-group">
                                 <label for="inputCity">City</label>
-                               <input type="text" class="form-control" id="inputCity">
+                               <input name="city" required type="text" class="form-control" value="{{ city }}">
                             </div>
                             <div class="form-group">
-                        <select id="inputState" class="form-control">
+                        <select name="state" required class="form-control" value="{{ state }}">
                            <option class="hidden"  selected disabled>State</option>
                             <option value="Andhra Pradesh">Andhra Pradesh</option>
                             <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -138,10 +142,21 @@
                     </div>
                 </div>
             </div>
+             </form>
         </div>
     </div>
 
-</div>                                          
+</div> 
+{% if messages %}
+                        {% for message in messages %}
+                        <div class="message">
+                            <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="$('.alert').remove()">&times;</button>
+                                {{message}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}                                         
 
 {% endblock content %}
 
