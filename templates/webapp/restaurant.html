@@ -196,7 +196,7 @@
                   </li>
                   <li class="list-group-item"><i class="fa fa-user mx-2 text-primary" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Manager</h5>
-                    <div class="ml-4"><small>username</small></div>
+                    <div class="ml-4"><small>{{ manager.username }}</small></div>
                   </li>
                 </ul>
               </div>
@@ -208,7 +208,7 @@
                   </li>
                   <li class="list-group-item"><i class="fa fa-envelope-o mx-2 text-danger" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Contact Manager</h5>
-                    <div class="ml-4"><small><a href="mailto:someone@example.com">maangername123@gmail.com</a></small>
+                    <div class="ml-4"><small><a href="mailto:{{ manager.email }}">{{ manager.email }}</a></small>
                     </div>
                   </li>
                 </ul>
