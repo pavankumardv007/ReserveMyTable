@@ -29,7 +29,7 @@
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Continue</a>
                 </li>
             </ul>
-             <form action="/register_manager" method="post">
+             <form action="/register_manager" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
             <div class="tab-content" id="myTabContent" >
             
@@ -74,8 +74,11 @@
                                 <input name="contact" required type="text" maxlength="10" minlength="10" class="form-control" placeholder="Contact No. *" value="{{ contact }}" />
                             </div>
                             <div class="form-group">
+                                <input name="location_url" required type="text" class="form-control" placeholder="Google map localtion url*" value="{{ location_url }}" />
+                            </div>
+                            <div class="form-group">
                                <label for="exampleFormControlFile1">Restaurant Profile Image</label>
-                               <input name="profile" required type="file" accept="image/*"  class="form-control-file" value="{{ profile }}">
+                               <input  name="profile" required type="file" accept="image/*"  class="form-control-file" value="{{ profile }}">
                             </div>
 
 
@@ -93,8 +96,8 @@
                                
                             </div>
                             <div class="form-group">
-                                <label for="inputCity">City</label>
-                               <input name="city" required type="text" class="form-control" value="{{ city }}">
+                                {% comment %} <label for="inputCity">City</label> {% endcomment %}
+                               <input name="city" required type="text" placeholder="City" class="form-control" value="{{ city }}">
                             </div>
                             <div class="form-group">
                         <select name="state" required class="form-control" value="{{ state }}">

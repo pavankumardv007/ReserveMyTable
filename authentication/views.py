@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.contrib.auth.decorators import login_required
 from .models import * 
 from webapp.models import Restaurant
 
@@ -30,7 +31,7 @@ def login_guest(request) :
           user = auth.authenticate(request,username= username,password = password)
           if user is not None : 
                auth.login(request,user)
-               return redirect('/restaurant_list')
+               return redirect('/restaurants')
           else : 
                messages.error(request,"Invalid Credentials")
 
@@ -110,13 +111,13 @@ def register_manager(request) :
           res_email = request.POST['res_email']
           desc = request.POST['desc']
           contact = request.POST['contact']
-          profile = request.POST['profile']
+          profile = request.FILES['profile']
           open_time = request.POST['open_time']
           close_time = request.POST['close_time']
           city = request.POST['city']
           state = request.POST['state']
-          address = city + ' ' + state 
-     
+          location_url = request.POST['location_url']
+          # handel error for state 
           context['username']  = username 
           context['email']  = email
           context['res_name']  = res_name
@@ -125,9 +126,10 @@ def register_manager(request) :
           context['contact']  = contact
           context['profile']  = profile
           context['open_time']  = open_time
-          context['colse_time']  = close_time
+          context['close_time']  = close_time
           context['city']  = city
           context['state']  = state
+          context['location_url']  = location_url
 
           if password1 == password2: 
                
@@ -135,6 +137,8 @@ def register_manager(request) :
                   messages.error(request, 'Username must not be blank and must contain only letters and numbers')
                elif len(password1) < 6:
                   messages.error(request, 'Password length must be atleast 6')
+               elif len(location_url) <= 2:
+                  messages.error(request, 'Please provide the link of google map location of the restaurant')
                elif User.objects.filter(username=username).exists():
                   messages.error(request, f'The username {username} is already taken')
                elif not validateEmail(email):
@@ -146,7 +150,7 @@ def register_manager(request) :
                else :
                   new_user = User.objects.create_user(username=username,email=email,password=password1)
                   new_user.save()
-                  new_res = Restaurant.objects.create(name=res_name,description=desc,address=address,open_time=open_time,close_time=close_time,contact_email=res_email,contact_no=contact,profile_img=profile)
+                  new_res = Restaurant.objects.create(name=res_name,description=desc,state=state,city=city,open_time=open_time,close_time=close_time,contact_email=res_email,contact_no=contact,profile_img=profile,location_url=location_url)
                   new_res.save()
                   new_manager = Manager.objects.create(user=new_user,restaurant=new_res)
                   new_manager.save()
@@ -164,8 +168,12 @@ def logout(request) :
      return redirect('index')
 
 def restaurant_list(request) :
-     return render(request,'webapp/restaurant_list.html')  
+     restaurants = Restaurant.objects.all()
+     print(restaurants)
+     context = { 'restaurants' : restaurants }  
+     return render(request,'webapp/restaurant_list.html',context=context)  
 
+@login_required
 def restaurant_edit(request,id) :
      
      restaurant = Restaurant.objects.get(id=id)

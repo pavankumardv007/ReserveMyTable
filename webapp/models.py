@@ -11,13 +11,15 @@ class Restaurant(models.Model) :
 
     name = models.CharField(max_length=100)
     description = models.TextField()
-    address = models.TextField()
+    city = models.TextField()
+    state = models.TextField(default=False)
     open_time = models.TimeField()
     close_time = models.TimeField()
     contact_email = models.EmailField()
     contact_no = PhoneNumberField()
     rating = models.FloatField(default=0)
-    profile_img = models.ImageField()
+    profile_img = models.FileField()
+    location_url = models.TextField(default=False)
 
     def __str__(self) :
         return self.name

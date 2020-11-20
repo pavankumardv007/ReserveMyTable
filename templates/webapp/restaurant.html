@@ -38,17 +38,17 @@
     <div class="row justify-content-center align-items-center">
       <div class="">
         <div class="profile card shadow-lg">
-          <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top"
-            alt="restaurant_img" style="height:400px;max-width:900px" />
+          <img src="{{ res.profile_img.url }}" class="card-img-top"
+            alt="restaurant_img" style="height:400px;width:900px" />
           <div class="card-body">
             <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
-              <h5 class="card-title">Restaurant Name</h5>
+              <h5 class="card-title">{{ res.name }}</h5>
               <div class="d-flex align-items-center"> </div>
               <div> <button type="button" class="btn btn-info">4.7</button> </div>
             </div>
             <p class="card-text">
-              Hyderabad | Telangana |
-              <a href="https://goo.gl/maps/qD3C8Xv5qn67B3aX8" target="_blank">
+              {{ res.city }} | {{ res.state }}
+              <a href="{{ res.location_url }}" target="_blank">
                 <i class="fa fa-location-arrow" aria-hidden="true"></i>
                 Get Direction
               </a>
@@ -58,11 +58,11 @@
             </div>
             <div class="chip" style="display: inline-block;">
               <i class="fa fa-expand" aria-hidden="true"></i>
-              10:30 am
+              {{ res.open_time }}
             </div>
             <div class="chip blue lighten-4" style="display: inline-block;">
               <i class="fa fa-compress" aria-hidden="true"></i>
-              11:30 pm
+              {{ res.close_time }}
             </div>
             </p>
           </div>
@@ -96,8 +96,7 @@
         <a name="about"></a>
         <div class="card-body">
           <h5 class="card-title">About</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.</p>
+          <p class="card-text">{{ res.description }}</p>
           <div class="container mb-5">
             <div class="row">
               <div class="col-12 col-lg-6">
@@ -193,7 +192,7 @@
                 <ul class="list-group">
                   <li class="list-group-item"><i class="fa fa-phone mx-2 text-info" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Call Us</h5>
-                    <div class="ml-4"><small>+91 9676314689</small></div>
+                    <div class="ml-4"><small>{{ res.contact_no }}</small></div>
                   </li>
                   <li class="list-group-item"><i class="fa fa-user mx-2 text-primary" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Manager</h5>
@@ -205,7 +204,7 @@
                 <ul class="list-group">
                   <li class="list-group-item"><i class="fa fa-envelope-o mx-2 text-success" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Contact Restaurant</h5>
-                    <div class="ml-4"><small><a href="mailto:someone@example.com">resname123@gmail.com</a></small></div>
+                    <div class="ml-4"><small><a href="mailto:{{ res.contact_email }}">{{ res.contact_email }}</a></small></div>
                   </li>
                   <li class="list-group-item"><i class="fa fa-envelope-o mx-2 text-danger" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Contact Manager</h5>

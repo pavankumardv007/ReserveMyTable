@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from webapp.models import Restaurant
+from .models import *
 # Create your views here.
 
 def index(request) :
@@ -13,8 +13,11 @@ def res_list(request):
      print(res)
      return render(request,'webapp/restaurant_list.html',context={ 'res' : res })
 
-def res_detail(request):
-     return render(request,'webapp/restaurant.html')
+def res_detail(request,id):
+     context = { 'res' : ''}
+     restaurant = Restaurant.objects.get(id=id)
+     context['res'] = restaurant
+     return render(request,'webapp/restaurant.html',context=context)
 
 def guest(request):
      return render(request,'webapp/guest_form.html')
