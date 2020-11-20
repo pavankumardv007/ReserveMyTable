@@ -1,3 +1,4 @@
+
 body{
 	margin: 0px;
 }
@@ -10,8 +11,9 @@ body{
    display: inline-block;
    box-shadow: 25px 30px 20px #b2b7bf;
    border-radius: 25px;
-   float: left;
    padding: 25px;
    background-image: linear-gradient(#ffffff,#b7dae8);
 }
+
+
 

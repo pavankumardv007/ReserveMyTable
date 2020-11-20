@@ -4,10 +4,15 @@
     home  
 {% endblock title  %}
 
+{% load static %}
+
+{% block style  %}
+    <link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock style  %}
+
 {% block content %}
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="./project.css">
 	</head>
 	<body>
 		{% comment %} <div class="top-div">
@@ -22,7 +27,61 @@
 		   </a>
          </div>
         </div> {% endcomment %}
-		this is Home page 
+		   <div class="top-image">
+			   <div>
+				<input type="text" placeholder="Search Restaurant ....">
+				<input type="submit" placeholder="submit" class="search">
+				</div>
+		   </div><br><br>
+
+		   <div> <h3 style="margin-left: 2.5%;"> TRENDING RESTAURANTS </h3></div>		   
+		    <div>  	
+				<div class="py-5 ml-5"> 
+				 <div class="row">
+					<a href="/detail" style="color: inherit; text-decoration: none;">
+						<div class="col-lg-4 col-md-6">
+						   <div class="col mb-4">
+						   <div class="card shadow-lg" style="width: 20rem;">
+						<img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top" alt="restaurant_img">
+						<div class="card-body">
+						  <h5 class="card-title">Restaurant Name</h5>
+						  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						</div>
+						</a>
+					  </div>
+					</div>
+					</div>
+					<a href="/detail" style="color: inherit; text-decoration: none;">
+						<div class="col-lg-4 col-md-6">
+						   <div class="col mb-4">
+						   <div class="card shadow-lg" style="width: 20rem;">
+						<img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top" alt="restaurant_img">
+						<div class="card-body">
+						  <h5 class="card-title">Restaurant Name</h5>
+						  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						</div>
+						</a>
+					  </div>
+					</div>
+					</div>
+					<a href="/detail" style="color: inherit; text-decoration: none;">
+						<div class="col-lg-4 col-md-6">
+						   <div class="col mb-4">
+						   <div class="card shadow-lg" style="width: 20rem;">
+						<img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top" alt="restaurant_img">
+						<div class="card-body">
+						  <h5 class="card-title">Restaurant Name</h5>
+						  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						</div>
+						</a>
+					  </div>
+					</div>
+					</div>
+				 </div>
+				</div> 
+		    </div>
+			 
+
 	</body>
 </html>
 {% endblock content %}
