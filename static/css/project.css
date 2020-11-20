@@ -1,6 +1,7 @@
 .top-image{
     padding: 40px ;
     background-image: url("https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+    background-attachment: fixed;
     opacity: 0.7;
     height: 400px;
     width: 100%;
