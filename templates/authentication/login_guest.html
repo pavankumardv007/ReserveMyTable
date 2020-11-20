@@ -1,57 +1,82 @@
-{% extends '../base.html' %}
-{% load static %}
-
-{% block title  %}
-    login 
-{% endblock title  %}
-
-{% block style  %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-{% endblock style  %}
-
-{% block content %}
+{% extends '../base.html' %} {% load static %} {% block title %} login {% endblock title %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock style %} {% block content %}
 
 <body>
-<div>
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="avatar">
-                  <img src="{% static 'images/user.png' %}" alt="Avatar">
-				</div>				
-				<h4 class="modal-title">Guest Login</h4>	
-			</div>
-			<div class="modal-body">
-				<form action="/login_guest" method="post">
-				{% csrf_token %}
-					<div class="form-group">
-						<input type="text" class="form-control" name="username" placeholder="Username" required="required">		
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" name="password" placeholder="Password" required="required">	
-					</div>        
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<a  class="btn btn-outline-primary" href="#">Forgot Password?</a>
-			</div>
-		</div>
-	</div>
-	 {% if messages %}
-                        {% for message in messages %}
-                        <div class="message">
-                            <div class="alert alert-warning alert-dismissible text-center" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="$('.alert').remove()">&times;</button>
-                                {{message}}
-                            </div>
-                        </div>
-                        {% endfor %}
-                        {% endif %}
-</div> 
-</body>    
+  <div>
+    <div class="modal-dialog modal-login">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="avatar">
+            <img src="{% static 'images/user.png' %}" alt="Avatar" />
+          </div>
+          <h4 class="modal-title">Guest Login</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/login_guest" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <input
+                type="text"
+                value="{{ username}}"
+                class="form-control"
+                name="username"
+                placeholder="Username"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Password"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg btn-block login-btn"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-outline-primary" href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+    {% if messages %} {% for message in messages %}
+    <div>
+      <div
+        class="alert alert-dismissible text-center"
+        role="alert"
+      >
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+          onclick="$('.alert').remove()"
+        >
+          &times;
+        </button>
+        {{message}}
+      </div>
+    </div>
+    {% endfor %} {% endif %}
+  </div>
+</body>
 
-
-{% endblock content %}
+{% endblock content %} 
+{% block script %} 
+{% if messages %} 
+{% for message in messages %}
+ window.setTimeout(function () { $(".alert").fadeTo(1000,
+0).slideUp(500, function () { $(this).remove(); }); }, 2000);
+{% endfor %} 
+{% endif %}
+ {% endblock script %}

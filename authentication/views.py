@@ -22,8 +22,10 @@ def login_guest(request) :
      if request.user.is_authenticated : 
           return redirect('/restaurant_list')
      
+     context = {'username': ''}
      if request.method == "POST" :
           username = request.POST['username']
+          context['username'] = username
           password = request.POST['password']
           user = auth.authenticate(request,username= username,password = password)
           if user is not None : 
@@ -32,30 +34,33 @@ def login_guest(request) :
           else : 
                messages.error(request,"Invalid Credentials")
 
-     return render(request,'authentication/login_guest.html') 
+     return render(request,'authentication/login_guest.html',context=context) 
 
 def login_manager(request) :
 
      if request.user.is_authenticated : 
           return redirect('/restaurant_list')
      
+     context = {'username': ''}
      if request.method == "POST" :
           username = request.POST['username']
+          context['username'] = username
           password = request.POST['password']
           # check if the user is a manager 
           user_exists = User.objects.get(username=username)
-          manager = Manager.objects.filter(user_id=user_exists.id)
+          manager = Manager.objects.get(user_id=user_exists.id)
           if manager : 
             user = auth.authenticate(request,username= username,password = password)
             if user is not None : 
                auth.login(request,user)
-               return redirect('/restaurant_list')
+               res_id = manager.restaurant_id
+               return redirect(f'/restaurant_edit/{res_id}')
             else : 
                messages.error(request,"Invalid Credentials")
           else : 
             messages.error(request,"Please register as manager to Continue ")
-          return render(request, 'authentication/login_manager.html')
-     return render(request,'authentication/login_manager.html')  
+          return render(request, 'authentication/login_manager.html',context=context)
+     return render(request,'authentication/login_manager.html',context=context)  
 
 def register_guest(request) :
      
@@ -160,3 +165,8 @@ def logout(request) :
 
 def restaurant_list(request) :
      return render(request,'webapp/restaurant_list.html')  
+
+def restaurant_edit(request,id) :
+     
+     restaurant = Restaurant.objects.get(id=id)
+     return render(request,'webapp/restaurant_edit.html', context={restaurant :  restaurant})  

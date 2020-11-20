@@ -1,16 +1,340 @@
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="./Description.css">
-</head>
-<body style="margin: 20px">
-    <div class="card"> 
-      <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" alt="YO" height="50%" width="100%">
-      <h1 style="text-align: center;"> NAME- POMINOS </h1>
-      <h3 style="text-align: left;"> Location- Varanasi </h3>
-      <h3 style="text-align: left;"> Timings - 9:00 am - 11:57 pm</h3>
-      <a href="#"><h3 style="text-align: left;"> Description  </h3></a>
-      <a href="#"><h3 style="text-align: left;"> Ratings  </h3></a>
-      <a href="#"><h3 style="text-align: left;"> Menu  </h3></a>
+{% extends '../base.html' %} {% load static %} {% block title %} detail {% endblock title %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/restaurant.css' %}" />
+{% endblock style %} {% block content %}
+
+<div class="container">
+  <div class="btn-group-fab" role="group" aria-label="FAB Menu">
+    <div>
+      <button data-toggle="modal" data-target="#exampleModalCenter" type="button"
+        class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Menu">
+        <i class="fa fa-bars"></i>
+      </button>
     </div>
-</body>
-</html>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Menu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img
+            src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/117520118/original/97b74413d19313b1d51958209e87e414a4ba3719/design-restaurant-menu-menu-design-food-menu-price-list-menu-catalog-pdf-flyer.jpg"
+            alt="related_img" style="height:400px;max-width:450px" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1 container">
+    <div class="row justify-content-center align-items-center">
+      <div class="">
+        <div class="profile card shadow-lg">
+          <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top"
+            alt="restaurant_img" style="height:400px;max-width:900px" />
+          <div class="card-body">
+            <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
+              <h5 class="card-title">Restaurant Name</h5>
+              <div class="d-flex align-items-center"> </div>
+              <div> <button type="button" class="btn btn-info">4.7</button> </div>
+            </div>
+            <p class="card-text">
+              Hyderabad | Telangana |
+              <a href="https://goo.gl/maps/qD3C8Xv5qn67B3aX8" target="_blank">
+                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                Get Direction
+              </a>
+            <div style="display: inline-block;">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              timings :
+            </div>
+            <div class="chip" style="display: inline-block;">
+              <i class="fa fa-expand" aria-hidden="true"></i>
+              10:30 am
+            </div>
+            <div class="chip blue lighten-4" style="display: inline-block;">
+              <i class="fa fa-compress" aria-hidden="true"></i>
+              11:30 pm
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 card shadow-lg mb-2" style="width: 900px;">
+        <ul class="nav nav-pills">
+          <li class="nav-item mx-5">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item mx-4">
+            <a class="nav-link" href="#images">Images</a>
+          </li>
+          <li class="nav-item mx-4">
+            <a class="nav-link" href="#menu">Menu</a>
+          </li>
+          <li class="nav-item mx-4">
+            <a class="nav-link" href="#contactus">Cotact Us</a>
+          </li>
+          <li class="nav-item mx-5">
+            <a class="nav-link" href="#rating">Rating</a>
+          </li>
+          <li class="nav-item mx-4">
+            <a class="nav-link" href="#reviews">Reviews</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="card shadow-lg" style="width: 900px;">
+        <a name="about"></a>
+        <div class="card-body">
+          <h5 class="card-title">About</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+            additional content. This content is a little bit longer.</p>
+          <div class="container mb-5">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <ul class="list-group">
+                  <li class="list-group-item"><i class="fa fa-cutlery mx-2 text-info" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Cuisine</h5>
+                    <div class="ml-4"><small>Indian , chineses , italian </small></div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-credit-card mx-2 text-primary" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Paymen methods</h5>
+                    <div class="ml-4"><small>MasterCard, Visa , UPI , Cash </small></div>
+                  </li>
+
+                  <li class="list-group-item"><i class="fa fa-external-link mx-2 text-danger" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Website</h5>
+                    <div class="ml-4"><small><a href="http://www.hyderabad-restaurant.de/"
+                          target="_blank">http://www.hyderabad-restaurant.de/</a></small>
+                    </div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-tag mx-2 text-warning" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Additional details</h5>
+                    <div class="ml-4"><small>Non-Smoking, Patio / Outdoor Dining, Takeout,
+                        Wheelchair Access, Wine</small></div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-6">
+                <ul class="list-group">
+                  <li class="list-group-item"><i class="fa fa-line-chart mx-2 text-success" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">BestSelling Items</h5>
+                    <div class="ml-4"><small>Fried Chicken, Burger,Mango Mia,Devil Kiss,
+                        Chocolate Wreck</small></div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-inr mx-2 text-primary" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Average Cost</h5>
+                    <div class="ml-4"><small>1000 per two people</small></div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-plus mx-2 text-danger" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Features</h5>
+                    <div class="ml-4"><small>WiFi, Parking Air, Conditioning</small></div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-map-marker mx-2 text-danger" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Landmark</h5>
+                    <div class="ml-4"><small>Wonderla , Hyderabad </small></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center mt-2">
+        <div class="card shadow-lg" style="width: 900px;">
+          <a name="images"></a>
+          <div class="card-body">
+            <h5 class="card-title">Related Images</h5>
+            <p class="card-text">
+            <div class="row">
+              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
+                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
+                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
+                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
+                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center mt-2">
+        <div class="card shadow-lg" style="width: 900px;">
+          <a name="menu"></a>
+          <div class="card-body">
+            <h5 class="card-title">Menu</h5>
+            <p class="card-text">
+              <img data-toggle="modal" data-target="#exampleModalCenter"
+                src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/117520118/original/97b74413d19313b1d51958209e87e414a4ba3719/design-restaurant-menu-menu-design-food-menu-price-list-menu-catalog-pdf-flyer.jpg"
+                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center mt-2">
+        <div class="card shadow-lg" style="width: 900px;">
+          <a name="contactus"></a>
+          <div class="card-body">
+            <h5 class="card-title">Contact Us</h5>
+            <p class="card-text">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <ul class="list-group">
+                  <li class="list-group-item"><i class="fa fa-phone mx-2 text-info" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Call Us</h5>
+                    <div class="ml-4"><small>+91 9676314689</small></div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-user mx-2 text-primary" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Manager</h5>
+                    <div class="ml-4"><small>username</small></div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 col-lg-6">
+                <ul class="list-group">
+                  <li class="list-group-item"><i class="fa fa-envelope-o mx-2 text-success" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Contact Restaurant</h5>
+                    <div class="ml-4"><small><a href="mailto:someone@example.com">resname123@gmail.com</a></small></div>
+                  </li>
+                  <li class="list-group-item"><i class="fa fa-envelope-o mx-2 text-danger" aria-hidden="true"></i>
+                    <h5 style="display: inline-block;" class="mb-1">Contact Manager</h5>
+                    <div class="ml-4"><small><a href="mailto:someone@example.com">maangername123@gmail.com</a></small>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center mt-2">
+        <div class="card shadow-lg" style="width: 900px;">
+          <a name="rating"></a>
+          <div class="card-body">
+            <h5 class="card-title">Rating</h5>
+            <p class="card-text">
+            <div class="container-fluid">
+              <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center">
+                  <div class="card-rating">
+                    <div class="row justify-content-left d-flex">
+                      <div class="col-md-4 d-flex flex-column">
+                        <div class="rating-box">
+                          <h1 class="pt-4">4.0</h1>
+                          <p class="">out of 5</p>
+                        </div>
+                        <div> <span class="fa fa-star star-active mx-1"></span> <span
+                            class="fa fa-star star-active mx-1"></span> <span
+                            class="fa fa-star star-active mx-1"></span> <span
+                            class="fa fa-star star-active mx-1"></span> <span
+                            class="fa fa-star star-inactive mx-1"></span> </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="rating-bar0 justify-content-center">
+                          <table class="text-left mx-auto">
+                            <tr>
+                              <td class="rating-label">Excellent</td>
+                              <td class="rating-bar">
+                                <div class="bar-container">
+                                  <div class="bar-5"></div>
+                                </div>
+                              </td>
+                              <td class="text-right">123</td>
+                            </tr>
+                            <tr>
+                              <td class="rating-label">Good</td>
+                              <td class="rating-bar">
+                                <div class="bar-container">
+                                  <div class="bar-4"></div>
+                                </div>
+                              </td>
+                              <td class="text-right">23</td>
+                            </tr>
+                            <tr>
+                              <td class="rating-label">Average</td>
+                              <td class="rating-bar">
+                                <div class="bar-container">
+                                  <div class="bar-3"></div>
+                                </div>
+                              </td>
+                              <td class="text-right">10</td>
+                            </tr>
+                            <tr>
+                              <td class="rating-label">Poor</td>
+                              <td class="rating-bar">
+                                <div class="bar-container">
+                                  <div class="bar-2"></div>
+                                </div>
+                              </td>
+                              <td class="text-right">3</td>
+                            </tr>
+                            <tr>
+                              <td class="rating-label">Terrible</td>
+                              <td class="rating-bar">
+                                <div class="bar-container">
+                                  <div class="bar-1"></div>
+                                </div>
+                              </td>
+                              <td class="text-right">0</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center mt-2 mb-5">
+        <div class="card shadow-lg" style="width: 900px;">
+          <a name="reviews"></a>
+          <div class="card-body">
+            <h5 class="card-title">Reviews</h5>
+            <p class="card-text">
+            <div class="card review">
+              <div class="row d-flex">
+                <div class="d-flex flex-column">
+                  <h4 class="mt-2 mb-0 card-title">Vikram jit Singh</h4>
+                  <div>
+                    <p class="text-left"><span class="text-muted">4.0</span> <span
+                        class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span>
+                      <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span>
+                      <span class="fa fa-star star-inactive"></span></p>
+                  </div>
+                </div>
+                <div class="ml-auto">
+                  <p class="text-muted pt-5 pt-sm-3">10 Sept</p>
+                </div>
+              </div>
+              <div class="row text-left">
+                <p class="content card-text">If you really enjoy spending your vacation 'on water' or would like to try
+                  something new and exciting for the first time.</p>
+              </div>
+            </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block script %} $(function() {
+$('.btn-group-fab').on('click', '.btn', function() {
+$('.btn-group-fab').toggleClass('active'); }); $('has-tooltip').tooltip(); });
+{% endblock script %}

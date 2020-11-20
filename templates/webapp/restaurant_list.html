@@ -1,14 +1,11 @@
 {% extends '../base.html' %}
-
+{% load static %} 
 {% block title  %}
     home  
 {% endblock title  %}
 
 {% block content %}
-  <div class="py-5 ml-5">
-    {% comment %} {% for  obj in   res  %}
-        <div> obj.name</div>
-    {% endfor %} {% endcomment %}
+  <div class="py-5 container">
      <div class="row">
       {% for i in '0123456789'|make_list %}
       <a href="/detail" style="color: inherit; text-decoration: none;">
