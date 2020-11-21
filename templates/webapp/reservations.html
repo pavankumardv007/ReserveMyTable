@@ -1,0 +1,42 @@
+{% extends '../base.html' %}
+
+{% block title  %}
+    home  
+{% endblock title  %}
+
+{% load static %}
+
+{% block style  %}
+    <link rel="stylesheet" href="{% static 'css/project.css' %}">
+{% endblock style  %}
+
+{% block content %}
+     {% for reservation in reservations %}
+     <div class="row justify-content-center align-items-center mt-2">
+        <div class="card shadow-lg" style="width: 900px;">
+
+          <div class="card-body">
+          <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
+              <h5 class="card-title">{{ reservation.guest }}</h5>
+              <div class="d-flex align-items-center"> </div>
+              <div> <button type="button" class="btn btn-info">  at : {{ reservation.date }} | {{ reservation.time }}</button> </div>
+            </div>
+             <p >
+              booked at : {{ reservation.booked_date }}
+            </p>
+             <p >
+              for  {{ reservation.no_of_people }}  people 
+            </p>
+             <p >
+              status :
+              {% if  reservation.status %}
+               Confrimed
+              {% else %}
+              Pending
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+     {% endfor %}
+{% endblock content %}

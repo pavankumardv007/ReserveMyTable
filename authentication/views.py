@@ -1,4 +1,3 @@
-from os import name
 from django.shortcuts import render , redirect
 from django.contrib import auth
 from django.contrib import messages
@@ -170,7 +169,7 @@ def register_manager(request) :
 
 def logout(request) :
      auth.logout(request)
-     messages.error(request,"Logged out succcesfully ! ")
+     messages.success(request,"Logged out succcesfully ! ")
      return redirect('index')
 
 def restaurant_list(request) :

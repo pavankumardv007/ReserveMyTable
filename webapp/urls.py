@@ -5,5 +5,8 @@ urlpatterns = [
     path('',views.index,name="index"),
     path('list',views.res_list,name="list"),
     path('restaurants/<int:id>',views.res_detail,name="detail"),
-    path('guest',views.guest,name="guest"),
+    path('create_reservation/<int:id>',views.create_reservation,name="reservation"),
+    path('my_reservations',views.my_reservations,name="history"),
+    path('reservations',views.get_reservations,name="reservations"),
+
 ]
