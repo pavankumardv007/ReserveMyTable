@@ -19,6 +19,7 @@ class Restaurant(models.Model) :
     contact_no = PhoneNumberField()
     rating = models.FloatField(default=0)
     profile_img = models.FileField()
+    menu_img = models.FileField(default=False)
     location_url = models.TextField(default=False)
 
     def __str__(self) :

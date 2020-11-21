@@ -17,7 +17,7 @@
 
           <div class="card-body">
           <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
-              <h5 class="card-title">{{ reservation.restaurant }}</h5>
+              <h5 class="card-title">{{ reservation.restaurant.name }}</h5>
               <div class="d-flex align-items-center"> </div>
               <div> <button type="button" class="btn btn-info">  at : {{ reservation.date }} | {{ reservation.time }}</button> </div>
             </div>
@@ -28,7 +28,12 @@
               for  {{ reservation.no_of_people }}  people 
             </p>
              <p >
-              status :  {{ reservation.status }}  people 
+              status :
+              {% if  reservation.status %}
+               <a class="badge badge-success">Confirmed</a>
+              {% else %}
+              <a  class="badge badge-warning">Pending</a> 
+              {% endif %}
             </p>
           </div>
         </div>

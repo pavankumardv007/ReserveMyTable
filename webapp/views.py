@@ -2,6 +2,8 @@ from django.shortcuts import render , redirect
 from .models import *
 from authentication.models import *
 from django.contrib import messages
+import datetime 
+import pytz 
 
 # Create your views here.
 
@@ -32,21 +34,97 @@ def create_reservation(request,id) :
 
      reservation = Reservation.objects.create(guest=guest,restaurant=restaurant,no_of_people=no_of_people,date=date,time=time)
      messages.success(request,'Reservation created Succesfully')
-     return redirect('/my_reservations')
+     return redirect('/my_reservations/active')
 
-def my_reservations(request):
+def my_reservations_active(request):
      reservations = Reservation.objects.filter(guest=request.user.id) 
+     active = []
+     date = datetime.date.today()
+     time = datetime.datetime.now(pytz.timezone('Asia/Kolkata')).time()
+     print(date,time)
+     for res in reservations :
+          if res.date >  date  :
+               res.is_active = True
+               active.append(res)
+          elif res.date == date and res.time >= time :
+               res.is_active = True
+               active.append(res)
+
      context = {
-          'reservations' : reservations
+          'reservations' : active
+     }
+     return render(request,'webapp/my_reservations.html',context=context)
+
+def my_reservations_history(request):
+     reservations = Reservation.objects.filter(guest=request.user.id) 
+     completed = []
+     date = datetime.date.today()
+     time = datetime.datetime.now(pytz.timezone('Asia/Kolkata')).time()
+     for res in reservations :
+          if res.date <  date  :
+               res.is_active = False
+               completed.append(res)
+          elif res.date == date and res.time < time :
+               res.is_active = False
+               completed.append(res)     
+
+     context = {
+          'reservations' : completed
      }
      return render(request,'webapp/my_reservations.html',context=context)
 
 
-def get_reservations(request):
+def get_reservations_active(request):
      manager = Manager.objects.get(user_id=request.user.id)
      res_id = manager.restaurant_id
      reservations = Reservation.objects.filter(restaurant=res_id) 
+     active = []
+     date = datetime.date.today()
+     time = datetime.datetime.now(pytz.timezone('Asia/Kolkata')).time()
+     for res in reservations :
+          if res.date >  date  :
+               res.is_active = True
+               active.append(res)
+          elif res.date == date and res.time >= time :
+               res.is_active = True
+               active.append(res)
+
      context = {
-          'reservations' : reservations
+          'reservations' : active
      }
      return render(request,'webapp/reservations.html',context=context)
+
+def get_reservations_completed(request):
+     manager = Manager.objects.get(user_id=request.user.id)
+     res_id = manager.restaurant_id
+     reservations = Reservation.objects.filter(restaurant=res_id) 
+     completed = []
+     date = datetime.date.today()
+     time = datetime.datetime.now(pytz.timezone('Asia/Kolkata')).time()
+     for res in reservations :
+          if res.date <  date  :
+               res.is_active = False
+               completed.append(res)
+          elif res.date == date and res.time < time :
+               res.is_active = False
+               completed.append(res)  
+     
+     context = {
+          'reservations' : completed
+     }
+     return render(request,'webapp/reservations.html',context=context)
+     
+
+def reservation_accept(request,id) :
+     reservation = Reservation.objects.get(id=id)
+     reservation.status = True
+     reservation.save()
+     messages.success(request,"status updated succesfully")
+     return redirect('/reservations')
+
+def reservation_reject(request,id) :
+     reservation = Reservation.objects.get(id=id)
+     reservation.status = False 
+     reservation.save()
+     messages.success(request,"status updated succesfully")
+     return redirect('/reservations')

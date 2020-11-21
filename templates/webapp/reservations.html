@@ -16,8 +16,9 @@
         <div class="card shadow-lg" style="width: 900px;">
 
           <div class="card-body">
-          <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
-              <h5 class="card-title">{{ reservation.guest }}</h5>
+            <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
+             <h3 class="card-title">by : {{ reservation.guest }}</h3>
+             <h5 class="card-subtitle">email : {{ reservation.guest.email  }}</h5>
               <div class="d-flex align-items-center"> </div>
               <div> <button type="button" class="btn btn-info">  at : {{ reservation.date }} | {{ reservation.time }}</button> </div>
             </div>
@@ -27,6 +28,7 @@
              <p >
               for  {{ reservation.no_of_people }}  people 
             </p>
+            <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
              <p >
               status :
               {% if  reservation.status %}
@@ -35,6 +37,24 @@
               Pending
               {% endif %}
             </p>
+              <div class="d-flex align-items-center"> </div>
+              <div> 
+              {% if reservation.is_active %}
+              {% if  reservation.status %}
+              <form action="/reservation_reject/{{ reservation.id }}" method="post">
+               {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Reject</button> 
+              </form>
+              {% else %}
+              <form action="/reservation_accept/{{ reservation.id }}" method="post">
+               {% csrf_token %}
+              <button type="submit" class="btn btn-success">Accept</button> 
+              </form>
+              {% endif %}
+              {% endif %}
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>

@@ -6,7 +6,11 @@ urlpatterns = [
     path('list',views.res_list,name="list"),
     path('restaurants/<int:id>',views.res_detail,name="detail"),
     path('create_reservation/<int:id>',views.create_reservation,name="reservation"),
-    path('my_reservations',views.my_reservations,name="history"),
-    path('reservations',views.get_reservations,name="reservations"),
+    path('my_reservations/active',views.my_reservations_active,name="history"),
+    path('my_reservations/history',views.my_reservations_history,name="history"),
+    path('reservations/active',views.get_reservations_active,name="reservations"),
+    path('reservations/completed',views.get_reservations_completed,name="reservations"),
+    path('reservation_accept/<int:id>',views.reservation_accept,name="accept"),
+    path('reservation_reject/<int:id>',views.reservation_reject,name="reject"),
 
 ]
