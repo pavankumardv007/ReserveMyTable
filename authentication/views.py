@@ -68,13 +68,15 @@ def register_guest(request) :
      if request.user.is_authenticated : 
           return redirect('/restaurant_list')
 
-     context = {'username': ''}
+     context = {'username': '' , 'email' : ''}
      if request.method == "POST" :
           
           username = request.POST['username']
+          email = request.POST['email']
           password1 = request.POST['password1']
           password2 = request.POST['password2']
           context['username'] = username
+          context['email'] = email
 
           if password1 == password2: 
                
@@ -84,8 +86,12 @@ def register_guest(request) :
                   messages.error(request, 'Password length must be atleast 6')
                elif User.objects.filter(username=username).exists():
                   messages.error(request, f'The username {username} is already taken')
+               elif not validateEmail(email):
+                  messages.error(request, f'The email { email } is not valid')
+               elif User.objects.filter(email=email).exists():
+                  messages.error(request, f'The email {email} is already taken')
                else :
-                  new_user = User.objects.create_user(username=username,password=password1)
+                  new_user = User.objects.create_user(username=username,password=password1,email=email)
                   new_user.save()
                   new_guest = Guest.objects.create(user=new_user)
                   new_guest.save()
@@ -148,7 +154,7 @@ def register_manager(request) :
                elif not contact.isnumeric() or contact[0] < '6' or len(contact) != 10:
                   messages.error(request, 'Enter a valid 10 digit phone number')
                else :
-                  new_user = User.objects.create_user(username=username,email=email,password=password1)
+                  new_user = User.objects.create_user(username=username,email=email,password=password1,is_staff=True)
                   new_user.save()
                   new_res = Restaurant.objects.create(name=res_name,description=desc,state=state,city=city,open_time=open_time,close_time=close_time,contact_email=res_email,contact_no=contact,profile_img=profile,location_url=location_url)
                   new_res.save()
@@ -177,4 +183,6 @@ def restaurant_list(request) :
 def restaurant_edit(request,id) :
      
      restaurant = Restaurant.objects.get(id=id)
-     return render(request,'webapp/restaurant_edit.html', context={restaurant :  restaurant})  
+     manager = Manager.objects.get(restaurant_id=id)
+     user = User.objects.get(id=manager.user_id)
+     return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user})  
