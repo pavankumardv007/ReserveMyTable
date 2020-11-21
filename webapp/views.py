@@ -128,3 +128,17 @@ def reservation_reject(request,id) :
      reservation.save()
      messages.success(request,"status updated succesfully")
      return redirect('/reservations')
+
+def edit_restaurant_details(request,id) :
+    restaurant = Restaurant.objects.get(id=id)
+    if request.method == 'POST' :
+         return render(request,'webapp/edit_details.html',context={ 'res' : restaurant })
+    else :
+         # converting time to 24 hrs format 
+     #     o_time = str(restaurant.open_time)
+     #     in_time = datetime.datetime.strptime(o_time, "%I:%M %p")
+     #     restaurant.open_time = datetime.datetime.strftime(in_time, "%H:%M")
+     #     c_time = str(restaurant.close_time)
+     #     in_time = datetime.datetime.strptime(c_time, "%I:%M %p")
+     #     restaurant.close_time = datetime.datetime.strftime(in_time, "%H:%M")
+         return render(request,'webapp/edit_details.html',context={ 'res' : restaurant })
