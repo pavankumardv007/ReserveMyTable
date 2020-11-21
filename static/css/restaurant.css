@@ -65,20 +65,15 @@ a:hover {
   color: #455A64
 }
 
+/* for rationg and reviews  */
+
 .card-rating {
   border-radius: 5px;
-  /* padding-left: 60px;
-  padding-right: 60px; */
-  /* margin-top: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px */
 }
 
 .rating-box {
   width: 130px;
   height: 130px;
-  /* margin-right: auto;
-  margin-left: auto; */
   background-color: #FBC02D;
   color: #fff
 }

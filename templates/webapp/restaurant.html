@@ -5,13 +5,75 @@
 <div class="container">
   <div class="btn-group-fab" role="group" aria-label="FAB Menu">
     <div>
-      <button data-toggle="modal" data-target="#exampleModalCenter" type="button"
+      <button data-toggle="modal" data-target="#book" type="button"
         class="btn btn-main btn-primary has-tooltip" data-placement="left" title="Menu">
         <i class="fa fa-bars"></i>
       </button>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  <div class="modal fade" id="book" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Reservation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <form action="/login_guest" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+               <div class="mb-4">
+                    <input type="date" min="2020-11-21" placeholder="Choose a reservation date" class="form-control py-4 px-4">
+                </div>
+                <div class="form-group">
+                        <select name="state" required class="form-control" value="{{ state }}">
+                           <option class="hidden"  selected disabled>Choose time</option>
+                            <option value="9:30">9:30</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="10:30">10:30 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="11:30">11:30 AM</option>
+                            <option value="12:00">12:00 NOON</option>
+                            <option value="12:30">12:30 PM</option>
+                            <option value="13:00">1:00 AM</option>
+                            <option value="13:30">1:30 AM</option>
+                            <option value="14:00">2:00 AM</option>
+                            <option value="14:30">2:30 AM</option>
+                            <option value="15:00">3:00 AM</option>
+                            <option value="15:30">3:30 AM</option>
+                            <option value="16:00">4:00 AM</option>
+                            <option value="16:30">4:30 AM</option>
+                            <option value="17:00">5:00 AM</option>
+                            <option value="17:30">5:30 AM</option>
+                            <option value="18:00">6:00 AM</option>
+                            <option value="18:30">6:30 AM</option>
+                            <option value="19:00">7:00 AM</option>
+                            <option value="19:30">7:30 AM</option>
+                            <option value="20:00">8:00 AM</option>
+                            <option value="20:30">8:30 AM</option>
+                            <option value="21:00">9:00 AM</option>
+
+                          </select>
+                            </div>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="number" placeholder="no of people" id="quantity" name="quantity" min="1" max="5">
+            </div>
+            <div class="modal-footer">
+          <button type="submit" class="btn btn-md btn-primary" data-dismiss="modal">
+              Confirm
+          </button>
+        </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="menu" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -174,7 +236,7 @@
           <div class="card-body">
             <h5 class="card-title">Menu</h5>
             <p class="card-text">
-              <img data-toggle="modal" data-target="#exampleModalCenter"
+              <img data-toggle="modal" data-target="#menu"
                 src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/117520118/original/97b74413d19313b1d51958209e87e414a4ba3719/design-restaurant-menu-menu-design-food-menu-price-list-menu-catalog-pdf-flyer.jpg"
                 class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
             </p>
@@ -333,7 +395,9 @@
     </div>
   </div>
 </div>
-{% endblock content %} {% block script %} $(function() {
+{% endblock content %} {% block script %} 
+{% comment %} for fab button  {% endcomment %}
+$(function() {
 $('.btn-group-fab').on('click', '.btn', function() {
 $('.btn-group-fab').toggleClass('active'); }); $('has-tooltip').tooltip(); });
 {% endblock script %}

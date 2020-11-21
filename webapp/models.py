@@ -25,31 +25,6 @@ class Restaurant(models.Model) :
         return self.name
 
 
-# Representing restaurant's Menu items         
-
-class MenuItems(models.Model) :
-
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.FloatField(default=0)
-    restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
-
-    def __str__(self) :
-        return f'{ self.restaurant } - {self.name}'
-
-
-# Representing resturants Table's 
-
-class Table(models.Model) :
-
-    seats_no = models.IntegerField()
-    restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
-    is_free = models.BooleanField()
-
-    def __str__ (self) :
-        return f'{self.restaurant} - {self.seats_no}'
-
-
 # Representing user reviews for a restaurant 
 
 class Reviews(models.Model) :
@@ -78,15 +53,11 @@ class Reservation(models.Model) :
 
    guest = models.ForeignKey(Guest,on_delete=models.CASCADE)
    restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
-   table = models.ForeignKey(Table,on_delete=models.CASCADE)
+   no_of_people = models.IntegerField(default=1)
    date = models.DateField()
-   start_time = models.TimeField()
-   end_time = models.TimeField()
+   time = models.TimeField()
    booked_date= models.DateTimeField(auto_now_add=True)
 
    def __str__ (self) :
           return f'{self.restaurant.name} {self.guest.username}'
- 
- # to be updated 
-   def is_active(self) :
-       return self 
+
