@@ -169,17 +169,17 @@
                 <ul class="list-group">
                   <li class="list-group-item"><i class="fa fa-cutlery mx-2 text-info" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Cuisine</h5>
-                    <div class="ml-4"><small>Indian , chineses , italian </small></div>
+                    <div class="ml-4"><small>{{ about.cuisine }}</small></div>
                   </li>
                   <li class="list-group-item"><i class="fa fa-credit-card mx-2 text-primary" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Paymen methods</h5>
-                    <div class="ml-4"><small>MasterCard, Visa , UPI , Cash </small></div>
+                    <div class="ml-4"><small>{{ about.payment_methods }} </small></div>
                   </li>
 
                   <li class="list-group-item"><i class="fa fa-external-link mx-2 text-danger" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Website</h5>
-                    <div class="ml-4"><small><a href="http://www.hyderabad-restaurant.de/"
-                          target="_blank">http://www.hyderabad-restaurant.de/</a></small>
+                    <div class="ml-4"><small><a href="{{ about.website }}"
+                          target="_blank">{{ about.website }}</a></small>
                     </div>
                   </li>
                 </ul>
@@ -188,16 +188,15 @@
                 <ul class="list-group">
                   <li class="list-group-item"><i class="fa fa-line-chart mx-2 text-success" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">BestSelling Items</h5>
-                    <div class="ml-4"><small>Fried Chicken, Burger,Mango Mia,Devil Kiss,
-                        Chocolate Wreck</small></div>
+                    <div class="ml-4"><small>{{ about.best_selling_items}}</small></div>
                   </li>
                   <li class="list-group-item"><i class="fa fa-plus mx-2 text-danger" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Features</h5>
-                    <div class="ml-4"><small>WiFi, Parking Air, Conditioning</small></div>
+                    <div class="ml-4"><small>{{ about.features }}</small></div>
                   </li>
                   <li class="list-group-item"><i class="fa fa-map-marker mx-2 text-danger" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Landmark</h5>
-                    <div class="ml-4"><small>Wonderla , Hyderabad </small></div>
+                    <div class="ml-4"><small>{{ about.landmark }}</small></div>
                   </li>
                 </ul>
               </div>

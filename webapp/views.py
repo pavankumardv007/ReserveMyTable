@@ -17,12 +17,14 @@ def res_list(request):
      return render(request,'webapp/restaurant_list.html',context={ 'res' : res })
 
 def res_detail(request,id):
-     context = { 'res' : '', 'manager' : ''}
+     context = { 'res' : '', 'manager' : '','about':''}
      restaurant = Restaurant.objects.get(id=id)
      manager = Manager.objects.get(restaurant_id=id)
+     about = About.objects.get(restaurant_id=id)
      user = User.objects.get(id=manager.user_id)
      context['res'] = restaurant
      context['manager'] = user
+     context['about'] = about
      return render(request,'webapp/restaurant.html',context=context)
 
 def create_reservation(request,id) :
@@ -132,7 +134,6 @@ def reservation_reject(request,id) :
 def edit_restaurant_details(request,id) :
     restaurant = Restaurant.objects.get(id=id)
     if request.method == 'POST' :
-           restaurant = Restaurant.objects.get(id=id)
            restaurant.name = request.POST['res_name']
            restaurant.description = request.POST['desc']
            restaurant.city = request.POST['city']
@@ -162,3 +163,19 @@ def edit_restaurant_profile(request,id) :
      restaurant.save()
      messages.success(request,"Restaurnt profile updated succesfully ! ")
      return  redirect(f'/restaurant_edit/{ id }')
+
+def edit_restaurant_about(request,id) :
+    about = About.objects.get(restaurant_id=id)
+    if request.method == 'POST' :
+           about.cuisine = request.POST['cuisine']
+           about.payment_methods = request.POST['payment_methods']
+           about.website = request.POST['website']
+           about.landmark = request.POST['landmark']
+           about.features = request.POST['features']
+           about.best_selling_items = request.POST['best_selling']
+           about.save()
+           messages.success(request,"Restarant About updated succesfully ! ")
+           return  redirect(f'/restaurant_edit/{ id }')
+    else :
+          return render(request,'webapp/edit_about.html',context={ 'res' : about , 'id' : id })
+

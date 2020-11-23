@@ -6,7 +6,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from .models import * 
-from webapp.models import Restaurant
+from webapp.models import *
 
 # Create your views here.
 
@@ -158,6 +158,8 @@ def register_manager(request) :
                   new_res = Restaurant.objects.create(name=res_name,description=desc,state=state,city=city,open_time=open_time,close_time=close_time,contact_email=res_email,contact_no=contact,profile_img=profile,location_url=location_url)
                   new_res.save()
                   new_manager = Manager.objects.create(user=new_user,restaurant=new_res)
+                  res_about = About.objects.create(restaurant=new_res,cuisine='',payment_methods='', features='',landmark='',website='', best_selling_items='')
+                  res_about.save()
                   new_manager.save()
                   messages.success(request, 'Registration successful! Please log in')
                   return redirect('/login_manager')
@@ -184,4 +186,5 @@ def restaurant_edit(request,id) :
      restaurant = Restaurant.objects.get(id=id)
      manager = Manager.objects.get(restaurant_id=id)
      user = User.objects.get(id=manager.user_id)
-     return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user})  
+     about = About.objects.get(restaurant_id=id)
+     return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user , 'about' : about})  

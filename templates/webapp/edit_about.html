@@ -13,58 +13,43 @@
     <div class="container justify-content-center align-items-center">
         <div class="card shadow-lg container pa-4">
         <div class="card-body">
-        <h3 class="card-title mb-5">Edit About</h3>
-           <form action="/edit_about/{{ res.id }}" method="post">
+        <h3 class="card-title">Edit About</h3>
+        <h6 class="card-card-subtitle mb-5">Note : Enter multiple items seperated by commas </h6>
+           <form action="/edit_about/{{ id }}" method="post">
             {% csrf_token %}
             <div class="row register-form">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input name="res_name" required type="text" class="form-control" placeholder="Name *" value="{{ res.name }}" />
-                            </div>
-                            <div class="form-group">
-                             <textarea name="desc" class="form-control" rows="3" placeholder="description *">{{ res.description }}</textarea>
-
-                            </div>
-                            <div class="form-group">
-                                <input  name="res_email" required type="email" class="form-control" placeholder="Email *" value="{{ res.contact_email }}" />
-                            </div>
-                            <div class="form-group">
-                                <input name="contact" required type="text" maxlength="10" minlength="10" class="form-control" placeholder="Contact No. *" value="{{ res.contact_no }}" />
-                            </div>
-                            <div class="form-group">
-                                <input name="location_url" required type="text" class="form-control" placeholder="Google map localtion url*" value="{{ res.location_url }}" />
-                            </div>
-                            <div class="form-group">
-                               <label>Restaurant Profile Image</label>
-                               <input  name="profile"  type="file" accept="image/*"  class="form-control-file file">
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="appt">opening time:</label>
-                                <input name="open_time" required type="time" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label for="appt">closing time:</label>
-                                <input name="close_time" required type="time" class="form-control">
-                            </div>
-                            <div class="form-group">
-                               
-                            </div>
-                            <div class="form-group">
-                               <input name="city" required type="text" placeholder="City" class="form-control" value="{{ res.city }}">
-                            </div>
-                            <div class="form-group">
-                               <label>Restaurant Menu</label>
-                               <input  name="menu"  type="file" accept="image/*"  class="form-control-file file">
-                            </div>
-                            <div class="form-group">
-                            <input type="submit" class="btn btn-warning btn-lg"  value="Save"/>
-                            </div>
-                        </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Cuisine</label>
+                        <input name="cuisine"  type="text" class="form-control" placeholder="Indian,chinese.." value="{{ res.cuisine }}" />
                     </div>
+                    <div class="form-group">
+                        <label>Paymany methods </label>
+                        <input name="payment_methods"  type="text" class="form-control" placeholder="credit,UPI.." value="{{ res.payment_methods }}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Features </label>
+                        <input name="features"  type="text" class="form-control" placeholder="AC,parking.." value="{{ res.features }}" />
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Landmark</label>
+                    <input name="landmark" type="text" class="form-control" placeholder="Near Wonderla.." value="{{ res.landmark }}" />
+                </div>
+                <div class="form-group">
+                    <label>Website</label>
+                    <input name="website"  type="text" class="form-control" placeholder="http://www.hyderabad-restaurant.de/" value="{{ res.website }}" />
+                </div>
+                <div class="form-group">
+                    <label>Best selling Items</label>
+                    <input name="best_selling"  type="text" class="form-control" placeholder="Fried Chicken, Burger.." value="{{ res.best_selling_items }}" />
+                </div>
+                <div class="form-group">
+                <input type="submit" class="btn btn-warning btn-lg"  value="Save"/>
+                </div>
+            </div>
+        </div>
           </form>
           </div>
         </div>
