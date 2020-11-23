@@ -211,14 +211,10 @@
               <h5 class="card-title">Related Images</h5>
             <p class="card-text">
             <div class="row">
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
+               {% for img in related_img %}
+              <img src="{{ img.image.url }}"
                 class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
-                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
-                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
-                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+                {% endfor %}
             </div>
             </p>
           </div>

@@ -88,6 +88,37 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="Addrelatedimg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add related Image</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/add_relatedimg/{{ res.id }}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+              <div class="form-group">
+                    <label>Related Image</label>
+                    <input required  name="related"  type="file" accept="image/*"  class="form-control-file file">
+               </div>
+               <div class="form-group">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg btn-block login-btn"
+              >
+                Add
+              </button>
+            </div>
+            </form>
+        </div>
+          
+      </div>
+    </div>
+  </div>
   <div class="row mt-1 container">
     <div class="row justify-content-center align-items-center">
       <div class="">
@@ -218,18 +249,15 @@
             <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
               <h5 class="card-title">Related Images</h5>
               <div class="d-flex align-items-center"> </div>
-              <div> <button type="button" class="btn btn-warning">Edit</button> </div>
+              <div> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Addrelatedimg">Add</button> </div>
             </div>
             <p class="card-text">
             <div class="row">
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
+              {% for img in related_img %}
+          
+              <img src="{{ img.image.url }}"
                 class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
-                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
-                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
-              <img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb"
-                class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+                {% endfor %}
             </div>
             </p>
           </div>

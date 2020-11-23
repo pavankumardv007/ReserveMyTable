@@ -17,14 +17,16 @@ def res_list(request):
      return render(request,'webapp/restaurant_list.html',context={ 'res' : res })
 
 def res_detail(request,id):
-     context = { 'res' : '', 'manager' : '','about':''}
+     context = { 'res' : '', 'manager' : '','about':'','related_img' : ''}
      restaurant = Restaurant.objects.get(id=id)
      manager = Manager.objects.get(restaurant_id=id)
      about = About.objects.get(restaurant_id=id)
      user = User.objects.get(id=manager.user_id)
+     images = RelatedImages.objects.filter(restaurant_id=id)
      context['res'] = restaurant
      context['manager'] = user
      context['about'] = about
+     context['related_img'] = images
      return render(request,'webapp/restaurant.html',context=context)
 
 def create_reservation(request,id) :
@@ -178,4 +180,13 @@ def edit_restaurant_about(request,id) :
            return  redirect(f'/restaurant_edit/{ id }')
     else :
           return render(request,'webapp/edit_about.html',context={ 'res' : about , 'id' : id })
+
+def add_related_image(request,id) :
+     restaurant = Restaurant.objects.get(id=id)
+     img = request.FILES['related']
+     image = RelatedImages.objects.create(image=img,restaurant=restaurant)
+     messages.success(request,"Related Image Added succesfully ! ")
+     return  redirect(f'/restaurant_edit/{ id }')
+
+
 

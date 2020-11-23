@@ -16,5 +16,6 @@ urlpatterns = [
     path('edit_menu/<int:id>',views.edit_restaurant_menu,name="edit_menu"),
     path('edit_profile/<int:id>',views.edit_restaurant_profile,name="edit_profile"),
     path('edit_about/<int:id>',views.edit_restaurant_about,name="edit_about"),
+    path('add_relatedimg/<int:id>',views.add_related_image,name="edit_about"),
 
 ]

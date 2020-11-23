@@ -187,4 +187,5 @@ def restaurant_edit(request,id) :
      manager = Manager.objects.get(restaurant_id=id)
      user = User.objects.get(id=manager.user_id)
      about = About.objects.get(restaurant_id=id)
-     return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user , 'about' : about})  
+     images = RelatedImages.objects.filter(restaurant_id=id)
+     return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user , 'about' : about, 'related_img' : images})  
