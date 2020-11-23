@@ -100,6 +100,42 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="review" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Rate This place</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <form action="/create_review/{{ res.id }}" method="post">
+            {% csrf_token %}
+               <div class="form-group">
+                <span> Rating</span>
+                <select name="rating" placeholder="Rating" required class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group ma-3 pa-3 px-3">
+                       <textarea  required name="comment" class="form-control"  placeholder="description *" rows="3"></textarea>
+              </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
   <div class="row mt-1 container">
     <div class="row justify-content-center align-items-center">
       <div class="">
@@ -110,7 +146,7 @@
             <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
               <h5 class="card-title">{{ res.name }}</h5>
               <div class="d-flex align-items-center"> </div>
-              <div> <button type="button" class="btn btn-info">4.7</button> </div>
+              <div> <button type="button" class="btn btn-info">{{ res.rating }}</button> </div>
             </div>
             <p class="card-text">
               {{ res.city }} | {{ res.state }}
@@ -285,14 +321,17 @@
                     <div class="row justify-content-left d-flex">
                       <div class="col-md-4 d-flex flex-column">
                         <div class="rating-box">
-                          <h1 class="pt-4">4.0</h1>
+                          <h1 class="pt-4">{{ res.rating }}</h1>
                           <p class="">out of 5</p>
                         </div>
-                        <div> <span class="fa fa-star star-active mx-1"></span> <span
-                            class="fa fa-star star-active mx-1"></span> <span
-                            class="fa fa-star star-active mx-1"></span> <span
-                            class="fa fa-star star-active mx-1"></span> <span
-                            class="fa fa-star star-inactive mx-1"></span> </div>
+                        <div> 
+                        {% for i in s %}
+                        <span class="fa fa-star star-active mx-1"></span>
+                        {% endfor %}
+                        {% for i in n %}
+                          <span  class="fa fa-star star-inactive mx-1"></span> 
+                        {% endfor %}
+                          </div>
                       </div>
                       <div class="col-md-8">
                         <div class="rating-bar0 justify-content-center">
@@ -300,47 +339,47 @@
                             <tr>
                               <td class="rating-label">Excellent</td>
                               <td class="rating-bar">
-                                <div class="bar-container">
-                                  <div class="bar-5"></div>
+                                <div class="progress">
+                                 <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ fivesper }}%" aria-valuenow="{{ res.ones }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                               </td>
-                              <td class="text-right">123</td>
+                              <td class="text-right">{{ fives }}</td>
                             </tr>
                             <tr>
                               <td class="rating-label">Good</td>
                               <td class="rating-bar">
-                                <div class="bar-container">
-                                  <div class="bar-4"></div>
+                                 <div class="progress">
+                                 <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ foursper }}%" aria-valuenow="{{ res.ones }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                               </td>
-                              <td class="text-right">23</td>
+                              <td class="text-right">{{ fours }}</td>
                             </tr>
                             <tr>
                               <td class="rating-label">Average</td>
                               <td class="rating-bar">
-                                <div class="bar-container">
-                                  <div class="bar-3"></div>
+                                <div class="progress">
+                                 <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ threesper }}%" aria-valuenow="{{ res.ones }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                               </td>
-                              <td class="text-right">10</td>
+                              <td class="text-right">{{ threes }}</td>
                             </tr>
                             <tr>
                               <td class="rating-label">Poor</td>
                               <td class="rating-bar">
-                                <div class="bar-container">
-                                  <div class="bar-2"></div>
+                                <div class="progress">
+                                 <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ towssper }}%" aria-valuenow="{{ res.ones }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                               </td>
-                              <td class="text-right">3</td>
+                              <td class="text-right">{{ tows }}</td>
                             </tr>
                             <tr>
                               <td class="rating-label">Terrible</td>
                               <td class="rating-bar">
-                                <div class="bar-container">
-                                  <div class="bar-1"></div>
+                                 <div class="progress">
+                                 <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ onesper }}%" aria-valuenow="{{ res.ones }}" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                               </td>
-                              <td class="text-right">0</td>
+                              <td class="text-right">{{ ones }}</td>
                             </tr>
                           </table>
                         </div>
@@ -358,28 +397,32 @@
         <div class="card shadow-lg" style="width: 900px;">
           <a name="reviews"></a>
           <div class="card-body">
-            <h5 class="card-title">Reviews</h5>
+          <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
+              <h5 class="card-title">Reviews</h5>
+              <div class="d-flex align-items-center"> </div>
+              <div> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#review">Add Review</button> </div>
+            </div>
             <p class="card-text">
+            {% for review in reviews %}
             <div class="card review">
               <div class="row d-flex">
                 <div class="d-flex flex-column">
-                  <h4 class="mt-2 mb-0 card-title">Vikram jit Singh</h4>
+                  <h4 class="mt-2 mb-0 card-title">{{ review.user }}</h4>
                   <div>
-                    <p class="text-left"><span class="text-muted">4.0</span> <span
-                        class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span>
-                      <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span>
-                      <span class="fa fa-star star-inactive"></span></p>
+                    <p class="text-left">
+                    <span class="text-muted">rating : {{ review.rating }}  <span class="fa fa-star star-active ml-1"></span> 
+                    </p>
                   </div>
                 </div>
                 <div class="ml-auto">
-                  <p class="text-muted pt-5 pt-sm-3">10 Sept</p>
+                  <p class="text-muted pt-5 pt-sm-3">{{ review.time_stamp }}</p>
                 </div>
               </div>
               <div class="row text-left">
-                <p class="content card-text">If you really enjoy spending your vacation 'on water' or would like to try
-                  something new and exciting for the first time.</p>
+                <p class="content card-text">{{ review.comment }}</p>
               </div>
             </div>
+            {% endfor %}
             </p>
           </div>
         </div>

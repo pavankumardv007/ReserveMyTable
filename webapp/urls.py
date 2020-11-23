@@ -20,5 +20,6 @@ urlpatterns = [
     path('edit_about/<int:id>',views.edit_restaurant_about,name="edit_about"),
     path('add_relatedimg/<int:id>',views.add_related_image,name="add_related"),
     path('delete_restaurant/<int:id>',views.delete_restaurant,name="delete"),
+    path('create_review/<int:id>',views.create_review,name="review"),
 
 ]

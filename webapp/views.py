@@ -19,16 +19,52 @@ def res_list(request):
      return render(request,'webapp/restaurant_list.html',context={ 'res' : res })
 
 def res_detail(request,id):
-     context = { 'res' : '', 'manager' : '','about':'','related_img' : ''}
+     context = { 'res' : '', 'manager' : '','about':'','related_img' : '','reviews' : '',}
      restaurant = Restaurant.objects.get(id=id)
      manager = Manager.objects.get(restaurant_id=id)
      about = About.objects.get(restaurant_id=id)
      user = User.objects.get(id=manager.user_id)
      images = RelatedImages.objects.filter(restaurant_id=id)
+     reviews = Reviews.objects.filter(restaurant_id=restaurant)
      context['res'] = restaurant
      context['manager'] = user
      context['about'] = about
      context['related_img'] = images
+     context['reviews'] = reviews 
+     ones = 0 ; tows = 0  ; threes = 0 ; fours = 0 ; fives = 0 
+     for review in reviews : 
+          rating = review.rating 
+          if rating == 1 :
+             ones += 1 
+          elif rating == 2 :
+             tows += 1 
+          elif rating == 3 :
+             threes +=1 
+          elif rating ==4 :
+               fours +=1 
+          else : 
+               fives += 1 
+     if reviews  :
+        total = len(reviews)
+        context['onesper'] = (ones/total)*100
+        context['towsper']  = (tows/total)*100
+        context['threesper'] = (threes/total)*100
+        context['foursper'] = (fours/total)*100
+        context['fivesper'] = (fives/total)*100
+     context['ones'] = ones 
+     context['tows'] = tows 
+     context['threes'] = threes 
+     context['fours'] = fours 
+     context['fives'] = fives
+     s = 's'
+     n = 's'
+     for i in range(int(restaurant.rating)-1) : 
+          s += 's' 
+     for i in range(5-int(restaurant.rating)-1) : 
+          n += 's'
+     context['s'] = s 
+     context['n'] = n 
+
      return render(request,'webapp/restaurant.html',context=context)
 
 def create_reservation(request,id) :
@@ -220,6 +256,25 @@ def delete_restaurant(request,id) :
     restaurant.delete()
     messages.success(request,"Restarant deleted succesfully ! ")
     return render(request,'webapp/index.html')
+
+def create_review(request,id) :
+     restaurant = Restaurant.objects.get(id=id)
+     guest = Guest.objects.get(user_id=request.user.id) 
+     commment = request.POST['comment']
+     rating = request.POST['rating']
+     review = Reviews.objects.create(user=guest, restaurant=restaurant,comment=commment,rating=rating)
+     review.save()
+     # update the restaurants reating 
+     reviews = Reviews.objects.filter(restaurant_id=restaurant)
+     num = 0
+     for rev in reviews : 
+          num += rev.rating 
+     rating = num/len(reviews)
+     restaurant.rating = rating 
+     restaurant.save()
+     messages.success(request,"Review submitted succesfully ! ")
+     return redirect(f'/restaurants/{id}')
+
     
 
 

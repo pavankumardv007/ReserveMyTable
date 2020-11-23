@@ -49,6 +49,7 @@ class Reviews(models.Model) :
     user = models.ForeignKey(Guest,on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
     time_stamp =  models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(default=0)
 
     def __str__ (self) :
           return f'{self.user.username} {self.restaurant.name}'
