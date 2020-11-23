@@ -96,7 +96,8 @@ def get_reservations_active(request):
                active.append(res)
 
      context = {
-          'reservations' : active
+          'reservations' : active,
+           'is_active' : True 
      }
      return render(request,'webapp/reservations.html',context=context)
 
@@ -116,7 +117,8 @@ def get_reservations_completed(request):
                completed.append(res)  
      
      context = {
-          'reservations' : completed
+          'reservations' : completed,
+           'is_active' : False
      }
      return render(request,'webapp/reservations.html',context=context)
      
@@ -134,6 +136,25 @@ def reservation_reject(request,id) :
      reservation.save()
      messages.success(request,"status updated succesfully")
      return redirect('/reservations')
+
+def reservation_edit(request,id) :
+     reservation = Reservation.objects.get(id=id)
+     if request.method == 'POST' :
+           reservation.date = request.POST['date']
+           reservation.time = request.POST['time']
+           reservation.no_of_people = request.POST['no_of_people']
+           reservation.save()
+           messages.success(request,"Reservation details updated succesfully ! ")
+           return  redirect('/my_reservations/active')
+     else :
+          return render(request,'webapp/edit_reservation.html',context={ 'reservation' : reservation })
+
+
+def reservation_delete(request,id) :
+     reservation = Reservation.objects.get(id=id)
+     reservation.delete()
+     messages.success(request,"reservation deleted Succesfully ! ")
+     return redirect('/my_reservations/active')
 
 def edit_restaurant_details(request,id) :
     restaurant = Restaurant.objects.get(id=id)

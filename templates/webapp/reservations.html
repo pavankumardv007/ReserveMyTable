@@ -11,6 +11,7 @@
 {% endblock style  %}
 
 {% block content %}
+<div class="container">
      {% for reservation in reservations %}
      <div class="row justify-content-center align-items-center mt-2">
         <div class="card shadow-lg" style="width: 900px;">
@@ -32,9 +33,9 @@
              <p >
               status :
               {% if  reservation.status %}
-               Confrimed
+               <a class="badge badge-success">Confirmed</a>
               {% else %}
-              Pending
+              <a  class="badge badge-warning">Pending</a> 
               {% endif %}
             </p>
               <div class="d-flex align-items-center"> </div>
@@ -59,4 +60,5 @@
         </div>
       </div>
      {% endfor %}
+     </div>
 {% endblock content %}

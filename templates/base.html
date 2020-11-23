@@ -50,6 +50,11 @@
               >Home <span class="sr-only">(current)</span></a
             >
           </li>
+          <li class="nav-item active mx-4">
+            <a class="nav-link" href="/restaurants"
+              >All Restaurants <span class="sr-only">(current)</span></a
+            >
+          </li>
           {% if user.is_authenticated %}
            {% if not user.is_staff %}
            <li class="nav-item active dropdown mx-4">

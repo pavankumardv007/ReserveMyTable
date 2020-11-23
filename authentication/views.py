@@ -47,18 +47,10 @@ def login_manager(request) :
           username = request.POST['username']
           context['username'] = username
           password = request.POST['password']
-          # check if the user is a manager 
-          # try:
-          #     user_exists = User.objects.get(username=username)
-          # except user_exists.DoesNotExist:
-          #    raise Http404("Post not found")
-          # user_exists = User.objects.get(username=username)
-          # manager = Manager.objects.get(user_id=user_exists.id)
           user = auth.authenticate(request,username= username,password = password)
           if user is not None  :
             user_exists = User.objects.get(username=username)
             manager = Manager.objects.get(user_id=user_exists.id) 
-          #   user = auth.authenticate(request,username= username,password = password)
             if manager : 
                auth.login(request,user)
                res_id = manager.restaurant_id
@@ -67,7 +59,6 @@ def login_manager(request) :
                messages.error(request,"Please register as manager to Continue")
           else : 
             messages.error(request,"Invalid Credentials")
-          #   messages.error(request,"Please register as manager to Continue ")
           return render(request, 'authentication/login_manager.html',context=context)
      return render(request,'authentication/login_manager.html',context=context)  
 
