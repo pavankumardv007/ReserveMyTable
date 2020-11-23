@@ -89,7 +89,7 @@
         </div>
         <div class="modal-body">
           <img
-            src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/117520118/original/97b74413d19313b1d51958209e87e414a4ba3719/design-restaurant-menu-menu-design-food-menu-price-list-menu-catalog-pdf-flyer.jpg"
+            src="{{ res.menu_img.url }}"
             alt="related_img" style="height:400px;max-width:450px" />
         </div>
         <div class="modal-footer">
@@ -182,11 +182,6 @@
                           target="_blank">http://www.hyderabad-restaurant.de/</a></small>
                     </div>
                   </li>
-                  <li class="list-group-item"><i class="fa fa-tag mx-2 text-warning" aria-hidden="true"></i>
-                    <h5 style="display: inline-block;" class="mb-1">Additional details</h5>
-                    <div class="ml-4"><small>Non-Smoking, Patio / Outdoor Dining, Takeout,
-                        Wheelchair Access, Wine</small></div>
-                  </li>
                 </ul>
               </div>
               <div class="col-12 col-lg-6">
@@ -195,10 +190,6 @@
                     <h5 style="display: inline-block;" class="mb-1">BestSelling Items</h5>
                     <div class="ml-4"><small>Fried Chicken, Burger,Mango Mia,Devil Kiss,
                         Chocolate Wreck</small></div>
-                  </li>
-                  <li class="list-group-item"><i class="fa fa-inr mx-2 text-primary" aria-hidden="true"></i>
-                    <h5 style="display: inline-block;" class="mb-1">Average Cost</h5>
-                    <div class="ml-4"><small>1000 per two people</small></div>
                   </li>
                   <li class="list-group-item"><i class="fa fa-plus mx-2 text-danger" aria-hidden="true"></i>
                     <h5 style="display: inline-block;" class="mb-1">Features</h5>
@@ -241,7 +232,7 @@
             <h5 class="card-title">Menu</h5>
             <p class="card-text">
               <img data-toggle="modal" data-target="#menu"
-                src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/117520118/original/97b74413d19313b1d51958209e87e414a4ba3719/design-restaurant-menu-menu-design-food-menu-price-list-menu-catalog-pdf-flyer.jpg"
+                src="{{ res.menu_img.url }}"
                 class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
             </p>
           </div>

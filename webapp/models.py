@@ -25,6 +25,21 @@ class Restaurant(models.Model) :
     def __str__(self) :
         return self.name
 
+# Representing about section of Restaurants 
+
+class About(models.Model) :
+    
+    restaurant = models.ForeignKey(Restaurant,on_delete=models.CASCADE)
+    payment_methods = models.TextField(default=False)
+    cuisine = models.TextField(default=False)
+    features = models.TextField(default=False)
+    landmark = models.TextField(default=False)
+    website = models.TextField(default=False)
+    best_selling_items = models.TextField(default=False)
+
+    def __str__(self) :
+        return self.name
+
 
 # Representing user reviews for a restaurant 
 

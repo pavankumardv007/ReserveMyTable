@@ -132,13 +132,33 @@ def reservation_reject(request,id) :
 def edit_restaurant_details(request,id) :
     restaurant = Restaurant.objects.get(id=id)
     if request.method == 'POST' :
-         return render(request,'webapp/edit_details.html',context={ 'res' : restaurant })
+           restaurant = Restaurant.objects.get(id=id)
+           restaurant.name = request.POST['res_name']
+           restaurant.description = request.POST['desc']
+           restaurant.city = request.POST['city']
+           restaurant.state = request.POST['state']
+           restaurant.open_time = request.POST['open_time']
+           restaurant.close_time = request.POST['close_time']
+           restaurant.contact_email = request.POST['res_email']
+           restaurant.contact_no = request.POST['contact']
+           restaurant.location_url = request.POST['location_url']
+           restaurant.save()
+           messages.success(request,"Restaurnt details updated succesfully ! ")
+           return  redirect(f'/restaurant_edit/{ id }')
     else :
-         # converting time to 24 hrs format 
-     #     o_time = str(restaurant.open_time)
-     #     in_time = datetime.datetime.strptime(o_time, "%I:%M %p")
-     #     restaurant.open_time = datetime.datetime.strftime(in_time, "%H:%M")
-     #     c_time = str(restaurant.close_time)
-     #     in_time = datetime.datetime.strptime(c_time, "%I:%M %p")
-     #     restaurant.close_time = datetime.datetime.strftime(in_time, "%H:%M")
-         return render(request,'webapp/edit_details.html',context={ 'res' : restaurant })
+          return render(request,'webapp/edit_details.html',context={ 'res' : restaurant })
+
+
+def edit_restaurant_menu(request,id) :
+     restaurant = Restaurant.objects.get(id=id)
+     restaurant.menu_img = request.FILES['menu']
+     restaurant.save()
+     messages.success(request,"Restaurnt menu updated succesfully ! ")
+     return  redirect(f'/restaurant_edit/{ id }')
+
+def edit_restaurant_profile(request,id) :
+     restaurant = Restaurant.objects.get(id=id)
+     restaurant.profile_img = request.FILES['profile']
+     restaurant.save()
+     messages.success(request,"Restaurnt profile updated succesfully ! ")
+     return  redirect(f'/restaurant_edit/{ id }')
