@@ -9,4 +9,5 @@ urlpatterns = [
     path('login_guest',views.login_guest,name="guest_login"),
     path('login_manager',views.login_manager,name="manager_login"),
     path('logout',views.logout,name="logout"),
+    path('reset_password',views.reset_password,name="reset"),
 ]

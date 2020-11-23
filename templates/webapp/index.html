@@ -14,12 +14,16 @@
 		   <div class="top-image">
 			  <br><br>
 			  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+			   <form action="/search" method="GET">
+                {% csrf_token %}
 				<div class="input-group">
 				  <div class="input-group-prepend">
 					<button id="button-addon2" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
 				  </div>
-				  <input type="search" placeholder="Search..." aria-describedby="button-addon2" class="form-control border-0 bg-light" >
+				  <input name="search" type="search" placeholder="Search by Name , Cities or  State .." aria-describedby="button-addon2" class="form-control border-0 bg-light" >
+					<button  type="submit" class="btn btn-warning">Search</button>
 				</div>
+				 </form>
 			  </div>
 		   </div><br><br>
 

@@ -15,8 +15,16 @@ def index(request) :
 
 def res_list(request):
      res = Restaurant.objects.all()
-     print(res)
      return render(request,'webapp/restaurant_list.html',context={ 'res' : res })
+
+def res_search(request):
+     res = Restaurant.objects.all()
+     query = request.GET.get('search')
+     byname  = Restaurant.objects.filter(name__icontains=query)
+     bycity  = Restaurant.objects.filter(city__icontains=query)
+     bystate  = Restaurant.objects.filter(state__icontains=query)
+     search = byname | bystate | bycity 
+     return render(request,'webapp/restaurant_list.html',context={ 'restaurants' : res , 'search' : search })
 
 def res_detail(request,id):
      context = { 'res' : '', 'manager' : '','about':'','related_img' : '','reviews' : '',}

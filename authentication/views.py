@@ -189,3 +189,9 @@ def restaurant_edit(request,id) :
      about = About.objects.get(restaurant_id=id)
      images = RelatedImages.objects.filter(restaurant_id=id)
      return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user , 'about' : about, 'related_img' : images})  
+
+def reset_password (request) : 
+     user = User.objects.get(username=request.POST['username'])
+     user.set_password('new password')
+     user.save()
+     return redirect('/restaurants')
