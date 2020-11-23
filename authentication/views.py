@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from .models import * 
 from webapp.models import *
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -47,18 +48,26 @@ def login_manager(request) :
           context['username'] = username
           password = request.POST['password']
           # check if the user is a manager 
-          user_exists = User.objects.get(username=username)
-          manager = Manager.objects.get(user_id=user_exists.id)
-          if manager : 
-            user = auth.authenticate(request,username= username,password = password)
-            if user is not None : 
+          # try:
+          #     user_exists = User.objects.get(username=username)
+          # except user_exists.DoesNotExist:
+          #    raise Http404("Post not found")
+          # user_exists = User.objects.get(username=username)
+          # manager = Manager.objects.get(user_id=user_exists.id)
+          user = auth.authenticate(request,username= username,password = password)
+          if user is not None  :
+            user_exists = User.objects.get(username=username)
+            manager = Manager.objects.get(user_id=user_exists.id) 
+          #   user = auth.authenticate(request,username= username,password = password)
+            if manager : 
                auth.login(request,user)
                res_id = manager.restaurant_id
                return redirect(f'/restaurant_edit/{res_id}')
             else : 
-               messages.error(request,"Invalid Credentials")
+               messages.error(request,"Please register as manager to Continue")
           else : 
-            messages.error(request,"Please register as manager to Continue ")
+            messages.error(request,"Invalid Credentials")
+          #   messages.error(request,"Please register as manager to Continue ")
           return render(request, 'authentication/login_manager.html',context=context)
      return render(request,'authentication/login_manager.html',context=context)  
 

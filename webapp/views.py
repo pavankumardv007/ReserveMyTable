@@ -4,6 +4,8 @@ from authentication.models import *
 from django.contrib import messages
 import datetime 
 import pytz 
+from django.contrib import auth
+
 
 # Create your views here.
 
@@ -188,5 +190,15 @@ def add_related_image(request,id) :
      messages.success(request,"Related Image Added succesfully ! ")
      return  redirect(f'/restaurant_edit/{ id }')
 
+def delete_restaurant(request,id) :
+    auth.logout(request)
+    restaurant = Restaurant.objects.get(id=id)
+    manager = Manager.objects.get(restaurant_id=id)
+    user = User.objects.get(id=manager.user_id)
+    user.delete()
+    restaurant.delete()
+    messages.success(request,"Restarant deleted succesfully ! ")
+    return render(request,'webapp/index.html')
+    
 
 

@@ -226,9 +226,11 @@
           <div class="card-body">
             <h5 class="card-title">Menu</h5>
             <p class="card-text">
+             {% if  not res.menu_img == 'False'%}
               <img data-toggle="modal" data-target="#menu"
                 src="{{ res.menu_img.url }}"
                 class="col-12 col-lg-2" alt="related_img" style="height:100px;max-width:200px" />
+                {% endif %}
             </p>
           </div>
         </div>
