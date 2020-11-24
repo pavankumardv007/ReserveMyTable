@@ -139,6 +139,7 @@ def get_reservations_active(request):
      date = datetime.date.today()
      time = datetime.datetime.now(pytz.timezone('Asia/Kolkata')).time()
      for res in reservations :
+          # res.guest = User.objects.get(id=res.guest.user_id)
           if res.date >  date  :
                res.is_active = True
                active.append(res)
@@ -181,7 +182,7 @@ def reservation_accept(request,id) :
      reservation.status = True
      reservation.save()
      messages.success(request,"status updated succesfully")
-     return redirect('/reservations')
+     return redirect('/reservations/active')
 
 @login_required
 def reservation_reject(request,id) :
@@ -189,7 +190,7 @@ def reservation_reject(request,id) :
      reservation.status = False 
      reservation.save()
      messages.success(request,"status updated succesfully")
-     return redirect('/reservations')
+     return redirect('/reservations/active')
 
 @login_required
 def reservation_edit(request,id) :

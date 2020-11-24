@@ -11,15 +11,15 @@
 {% endblock style  %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="margin-top:100px">
      {% for reservation in reservations %}
-     <div class="row justify-content-center align-items-center mt-2">
-        <div class="card shadow-lg" style="width: 900px;">
+     <div class="row justify-content-center align-items-center" >
+        <div class="card shadow-lg mt-2" style="width: 900px;">
 
           <div class="card-body">
             <div class="time d-flex flex-row align-items-center justify-content-between mt-1">
              <h3 class="card-title">by : {{ reservation.guest }}</h3>
-             <h5 class="card-subtitle">email : {{ reservation.guest.email  }}</h5>
+             <h5 class="card-subtitle">email : {{ reservation.guest.user.email  }}</h5>
               <div class="d-flex align-items-center"> </div>
               <div> <button type="button" class="btn btn-info">  at : {{ reservation.date }} | {{ reservation.time }}</button> </div>
             </div>

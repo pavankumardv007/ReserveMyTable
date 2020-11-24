@@ -187,7 +187,43 @@ def restaurant_edit(request,id) :
      user = User.objects.get(id=manager.user_id)
      about = About.objects.get(restaurant_id=id)
      images = RelatedImages.objects.filter(restaurant_id=id)
-     return render(request,'webapp/restaurant_edit.html', context={'res' :  restaurant,'manager' : user , 'about' : about, 'related_img' : images})  
+     reviews = Reviews.objects.filter(restaurant_id=restaurant)
+     context = {'res' :  restaurant,'manager' : user , 'about' : about, 'related_img' : images}
+     ones = 0 ; tows = 0  ; threes = 0 ; fours = 0 ; fives = 0 
+     for review in reviews : 
+          rating = review.rating 
+          if rating == 1 :
+             ones += 1 
+          elif rating == 2 :
+             tows += 1 
+          elif rating == 3 :
+             threes +=1 
+          elif rating ==4 :
+               fours +=1 
+          else : 
+               fives += 1 
+     if reviews  :
+        total = len(reviews)
+        context['onesper'] = (ones/total)*100
+        context['towsper']  = (tows/total)*100
+        context['threesper'] = (threes/total)*100
+        context['foursper'] = (fours/total)*100
+        context['fivesper'] = (fives/total)*100
+     context['ones'] = ones 
+     context['tows'] = tows 
+     context['threes'] = threes 
+     context['fours'] = fours 
+     context['fives'] = fives
+     context['reviews'] = reviews
+     s = 's'
+     n = 's'
+     for i in range(int(restaurant.rating)-1) : 
+          s += 's' 
+     for i in range(5-int(restaurant.rating)-1) : 
+          n += 's'
+     context['s'] = s 
+     context['n'] = n 
+     return render(request,'webapp/restaurant_edit.html', context=context)  
 
 @login_required
 def reset_password (request) : 

@@ -1,8 +1,24 @@
 {% extends '../base.html' %}
 {% load static %} 
 {% block title  %}
-    home  
+    All Restaurants 
 {% endblock title  %}
+{% block style %}
+  <style> 
+   .card{ 
+            overflow: hidden; 
+            margin: 0 auto; 
+        } 
+      
+         .card-img-top { 
+            width: 100%; 
+            transition: 0.5s all ease-in-out; 
+        } 
+        .card-img-top:hover { 
+            transform: scale(1.2); 
+        } 
+    </style>
+{% endblock style %}
 
 {% block content %}
   <div class="py-5 container">
@@ -46,8 +62,6 @@
      </div>
       <h5 class="mb-4">All Restaurants </h5>
      <div class="row">
-      
-      <div>
       {% for res in restaurants %}
       <a href="/restaurants/{{ res.id }}" style="color: inherit; text-decoration: none;">
       <div class="col-lg-4 col-md-6">
@@ -63,11 +77,13 @@
         <p class="card-text">{{ res.description }}</p>
       </div>
       </a>
-      </div>
     </div>
+
   </div>
+
   </div>
-      {% endfor %}
+   {% endfor %}
+     
   </div>
   </div>
 {% endblock content %}

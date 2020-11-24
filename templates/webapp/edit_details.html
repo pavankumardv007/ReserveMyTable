@@ -11,7 +11,7 @@
 {% endblock style  %}
 {% block content %}
     <div class="container justify-content-center align-items-center">
-        <div class="card shadow-lg container pa-4">
+        <div class="card shadow-lg container pa-4" style="margin-top:100px">
         <div class="card-body">
         <h3 class="card-title mb-5">Edit Restaurant Details</h3>
            <form action="/edit_details/{{ res.id }}" method="post">
@@ -33,10 +33,6 @@
                             </div>
                             <div class="form-group">
                                 <input name="location_url" required type="text" class="form-control" placeholder="Google map localtion url*" value="{{ res.location_url }}" />
-                            </div>
-                            <div class="form-group">
-                               <label>Restaurant Profile Image</label>
-                               <input  name="profile"  type="file" accept="image/*"  class="form-control-file file">
                             </div>
 
 
@@ -96,10 +92,6 @@
                             <option value="Uttarakhand">Uttarakhand</option>
                             <option value="West Bengal">West Bengal</option>
                           </select>
-                            </div>
-                            <div class="form-group">
-                               <label>Restaurant Menu</label>
-                               <input  name="menu"  type="file" accept="image/*"  class="form-control-file file">
                             </div>
                             <div class="form-group">
                             <input type="submit" class="btn btn-warning btn-lg"  value="Save"/>

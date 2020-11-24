@@ -8,6 +8,7 @@
 
 {% block style  %}
     <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <link rel="stylesheet" href="{% static 'css/timeline.css' %}">
 {% endblock style  %}
 
 {% block content %}
@@ -50,8 +51,9 @@
                </div>
           </div>
       </div>
-  </div>
       {% endfor %}
+  </div>
+      
 				 </div>
 				</div> 
 		    </div>
@@ -70,5 +72,57 @@
 					</a>
 				</div>
 			</div>
+			<div class="container mt-5" style="margin-bottom:100px">
+  <div class="page-header">
+    <h1 id="timeline">How it Works ? </h1>
+  </div>
+  <ul class="timeline">
+    <li>
+      <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">Search</h4>
+        </div>
+        <div class="timeline-body">
+          <p>Search the restaurant by name , city or state </p>
+        </div>
+      </div>
+    </li>
+    <li class="timeline-inverted">
+      <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">Book</h4>
+        </div>
+        <div class="timeline-body">
+          <p>Select a Restaurant an make a reservation at a date , time and for a particular number of people </p>
+         
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">Confirmation</h4>
+        </div>
+        <div class="timeline-body">
+          <p>After making your reservation wait for the Confirmation from the manager of the restaurant </p>
+        </div>
+      </div>
+    </li>
+    <li class="timeline-inverted">
+      <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">Dine Out ! </h4>
+        </div>
+        <div class="timeline-body">
+          <p>After the status of the reservation is Accepted .. it's time to Dine out </p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
 			</div>
 {% endblock content %}
