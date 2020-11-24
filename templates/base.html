@@ -93,8 +93,8 @@
             </div>
           </li>
           {% endif %}
-          <li class="nav-item active mx-4 btn btn-outline-warning">
-            <a class="nav-link" href="/logout">Logout</a>
+          <li class="nav-item active mx-4 ">
+            <a class="nav-link btn btn-outline-warning" href="/logout">Logout</a>
           </li>
           {% else %}
           <li class="nav-item active dropdown mx-4">
@@ -141,7 +141,14 @@
     <main role="main" class="mb-5" style="height:900px;">
    {% block content %} this is main content {% endblock %}
     </main>
-    
+                        {% for message in messages %}
+                        <div class="message">
+                            <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="$('.alert').remove()">&times;</button>
+                                {{message}}
+                            </div>
+                        </div> 
+                        {% endfor %}
     <footer
       class="page-footer font-small fixed-bottom navbar-dark mt-5"
       style="background-color: #2574f5"
@@ -153,9 +160,10 @@
         >
       </div>
     </footer>
-    <script>{% block script %} 
-    {% endblock script  %}
-    </script>   
+    {% comment %} <script>
+    window.setTimeout(function () { $(".snack").fadeTo(1000,
+0).slideUp(500, function () { $(this).remove(); }); }, 2000);
+    </script>    {% endcomment %}
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

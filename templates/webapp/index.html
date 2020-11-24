@@ -14,15 +14,15 @@
      <div class="">
 		   <div class="top-image">
 			  <br><br>
-			  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width:60%;margin-left:280px">
+			  <div class="bg-light rounded rounded-pill shadow-sm mb-4" style="width:60%;margin-left:280px">
 			   <form action="/search" method="GET">
                 {% csrf_token %}
 				<div class="input-group">
 				  <div class="input-group-prepend">
 					<button id="button-addon2" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
 				  </div>
-				  <input name="search" type="search" placeholder="Search by Name , Cities or  State .." aria-describedby="button-addon2" class="form-control border-0 bg-light" >
-					<button  type="submit" class="btn btn-warning">Search</button>
+				  <input name="search" style="margin-top:7px" type="search" placeholder="Search by Name , Cities or  State .." aria-describedby="button-addon2" class="form-control border-0 bg-light" >
+					<button  type="submit" class="btn btn-warning my-2" style="margin-right:15px;">Search</button>
 				</div>
 				 </form>
 			  </div>

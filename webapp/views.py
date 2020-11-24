@@ -5,6 +5,7 @@ from django.contrib import messages
 import datetime 
 import pytz 
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -78,6 +79,7 @@ def res_detail(request,id):
 
      return render(request,'webapp/restaurant.html',context=context)
 
+@login_required
 def create_reservation(request,id) :
      guest = Guest.objects.get(user_id=request.user.id) 
      restaurant = Restaurant.objects.get(id=id) 
@@ -89,6 +91,7 @@ def create_reservation(request,id) :
      messages.success(request,'Reservation created Succesfully')
      return redirect('/my_reservations/active')
 
+@login_required
 def my_reservations_active(request):
      reservations = Reservation.objects.filter(guest=request.user.id) 
      active = []
@@ -108,6 +111,7 @@ def my_reservations_active(request):
      }
      return render(request,'webapp/my_reservations.html',context=context)
 
+@login_required
 def my_reservations_history(request):
      reservations = Reservation.objects.filter(guest=request.user.id) 
      completed = []
@@ -126,7 +130,7 @@ def my_reservations_history(request):
      }
      return render(request,'webapp/my_reservations.html',context=context)
 
-
+@login_required
 def get_reservations_active(request):
      manager = Manager.objects.get(user_id=request.user.id)
      res_id = manager.restaurant_id
@@ -148,6 +152,7 @@ def get_reservations_active(request):
      }
      return render(request,'webapp/reservations.html',context=context)
 
+@login_required
 def get_reservations_completed(request):
      manager = Manager.objects.get(user_id=request.user.id)
      res_id = manager.restaurant_id
@@ -170,6 +175,7 @@ def get_reservations_completed(request):
      return render(request,'webapp/reservations.html',context=context)
      
 
+@login_required
 def reservation_accept(request,id) :
      reservation = Reservation.objects.get(id=id)
      reservation.status = True
@@ -177,6 +183,7 @@ def reservation_accept(request,id) :
      messages.success(request,"status updated succesfully")
      return redirect('/reservations')
 
+@login_required
 def reservation_reject(request,id) :
      reservation = Reservation.objects.get(id=id)
      reservation.status = False 
@@ -184,6 +191,7 @@ def reservation_reject(request,id) :
      messages.success(request,"status updated succesfully")
      return redirect('/reservations')
 
+@login_required
 def reservation_edit(request,id) :
      reservation = Reservation.objects.get(id=id)
      if request.method == 'POST' :
@@ -196,13 +204,14 @@ def reservation_edit(request,id) :
      else :
           return render(request,'webapp/edit_reservation.html',context={ 'reservation' : reservation })
 
-
+@login_required
 def reservation_delete(request,id) :
      reservation = Reservation.objects.get(id=id)
      reservation.delete()
      messages.success(request,"reservation deleted Succesfully ! ")
      return redirect('/my_reservations/active')
 
+@login_required
 def edit_restaurant_details(request,id) :
     restaurant = Restaurant.objects.get(id=id)
     if request.method == 'POST' :
@@ -222,6 +231,7 @@ def edit_restaurant_details(request,id) :
           return render(request,'webapp/edit_details.html',context={ 'res' : restaurant })
 
 
+@login_required
 def edit_restaurant_menu(request,id) :
      restaurant = Restaurant.objects.get(id=id)
      restaurant.menu_img = request.FILES['menu']
@@ -229,6 +239,7 @@ def edit_restaurant_menu(request,id) :
      messages.success(request,"Restaurnt menu updated succesfully ! ")
      return  redirect(f'/restaurant_edit/{ id }')
 
+@login_required
 def edit_restaurant_profile(request,id) :
      restaurant = Restaurant.objects.get(id=id)
      restaurant.profile_img = request.FILES['profile']
@@ -236,6 +247,7 @@ def edit_restaurant_profile(request,id) :
      messages.success(request,"Restaurnt profile updated succesfully ! ")
      return  redirect(f'/restaurant_edit/{ id }')
 
+@login_required
 def edit_restaurant_about(request,id) :
     about = About.objects.get(restaurant_id=id)
     if request.method == 'POST' :
@@ -251,6 +263,7 @@ def edit_restaurant_about(request,id) :
     else :
           return render(request,'webapp/edit_about.html',context={ 'res' : about , 'id' : id })
 
+@login_required
 def add_related_image(request,id) :
      restaurant = Restaurant.objects.get(id=id)
      img = request.FILES['related']
@@ -258,6 +271,7 @@ def add_related_image(request,id) :
      messages.success(request,"Related Image Added succesfully ! ")
      return  redirect(f'/restaurant_edit/{ id }')
 
+@login_required
 def delete_restaurant(request,id) :
     auth.logout(request)
     restaurant = Restaurant.objects.get(id=id)
@@ -268,6 +282,7 @@ def delete_restaurant(request,id) :
     messages.success(request,"Restarant deleted succesfully ! ")
     return render(request,'webapp/index.html')
 
+@login_required
 def create_review(request,id) :
      restaurant = Restaurant.objects.get(id=id)
      guest = Guest.objects.get(user_id=request.user.id) 

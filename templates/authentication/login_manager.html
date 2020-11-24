@@ -38,7 +38,7 @@
 		</div>
 	</div>
 </div>     
- {% if messages %}
+ {% comment %} {% if messages %}
                         {% for message in messages %}
                         <div class="message">
                             <div class="alert alert-warning alert-dismissible text-center" role="alert">
@@ -47,6 +47,6 @@
                             </div>
                         </div>
                         {% endfor %}
-                        {% endif %}
+                        {% endif %} {% endcomment %}
 
 {% endblock content %}

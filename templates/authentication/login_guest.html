@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    {% if messages %} {% for message in messages %}
+    {% comment %} {% if messages %} {% for message in messages %}
     <div>
       <div
         class="alert alert-dismissible text-center"
@@ -69,16 +69,16 @@
         {{message}}
       </div>
     </div>
-    {% endfor %} {% endif %}
+    {% endfor %} {% endif %} {% endcomment %}
   </div>
 </body>
 
 {% endblock content %} 
-{% block script %} 
+{% comment %} {% block script %} 
 {% if messages %} 
 {% for message in messages %}
  window.setTimeout(function () { $(".alert").fadeTo(1000,
 0).slideUp(500, function () { $(this).remove(); }); }, 2000);
 {% endfor %} 
 {% endif %}
- {% endblock script %}
+ {% endblock script %} {% endcomment %}
