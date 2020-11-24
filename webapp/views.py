@@ -10,7 +10,10 @@ from django.contrib import auth
 # Create your views here.
 
 def index(request) :
-     return render(request,'webapp/index.html')
+     restaurants = Restaurant.objects.all()
+     trending = sorted(restaurants, key=lambda x: x.rating, reverse=True)
+     top = trending[:3]
+     return render(request,'webapp/index.html',context={'top' : top })
 
 
 def res_list(request):

@@ -4,6 +4,7 @@ body {
 .modal-login {		
 	color: #ec0202;
 	width: 350px;
+	margin-top : 30px;
 }
 .modal-login .modal-content {
 	padding: 20px;

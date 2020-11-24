@@ -11,9 +11,10 @@
 {% endblock style  %}
 
 {% block content %}
+     <div class="">
 		   <div class="top-image">
 			  <br><br>
-			  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+			  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width:60%;margin-left:280px">
 			   <form action="/search" method="GET">
                 {% csrf_token %}
 				<div class="input-group">
@@ -31,61 +32,43 @@
 		    <div>  	
 				<div class="py-5 ml-5"> 
 				 <div class="row">
-					<a href="/detail" style="color: inherit; text-decoration: none;">
-						<div class="col-lg-4 col-md-6">
-						   <div class="col mb-4">
-						   <div class="card shadow-lg" style="width: 20rem;">
-						<img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top" alt="restaurant_img">
-						<div class="card-body">
-						  <h5 class="card-title">Restaurant Name</h5>
-						  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						</div>
-						</a>
-					  </div>
+					{% for res in top %}
+					<a href="/restaurants/{{ res.id }}" style="color: inherit; text-decoration: none;">
+					<div class="col-lg-4 col-md-6">
+						<div class="col mb-4">
+						<div class="card shadow-lg" style="width: 20rem;">
+					<img src="{{ res.profile_img.url }}" class="card-img-top" alt="restaurant_img">
+					<div class="card-body">
+					<div class="time d-flex flex-row align-items-center justify-content-between mt-1">
+							<h5 class="card-title">{{ res.name }}</h5>
+							<div class="d-flex align-items-center"> </div>
+							<div> <button type="button" class="btn btn-warning btn-small">{{ res.rating }}</button> </div>
+							</div>
+						<p class="card-text">{{ res.description }}</p>
 					</div>
-					</div>
-					<a href="/detail" style="color: inherit; text-decoration: none;">
-						<div class="col-lg-4 col-md-6">
-						   <div class="col mb-4">
-						   <div class="card shadow-lg" style="width: 20rem;">
-						<img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top" alt="restaurant_img">
-						<div class="card-body">
-						  <h5 class="card-title">Restaurant Name</h5>
-						  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						</div>
-						</a>
-					  </div>
-					</div>
-					</div>
-					<a href="/detail" style="color: inherit; text-decoration: none;">
-						<div class="col-lg-4 col-md-6">
-						   <div class="col mb-4">
-						   <div class="card shadow-lg" style="width: 20rem;">
-						<img src="https://www.linguahouse.com/linguafiles/md5/d01dfa8621f83289155a3be0970fb0cb" class="card-img-top" alt="restaurant_img">
-						<div class="card-body">
-						  <h5 class="card-title">Restaurant Name</h5>
-						  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						</div>
-						</a>
-					  </div>
-					</div>
-					</div>
+					</a>
+               </div>
+          </div>
+      </div>
+  </div>
+      {% endfor %}
 				 </div>
 				</div> 
 		    </div>
 			 
 			<div class="image">
 				<div class="image-content">
-					<div style=" display: inline-block; margin-top: 40px;"><h1> Own a restaurant? Join us </h1></div>
-					<div style=" margin-top: 9%; height:20%">
+					<div style=" display: inline-block;margin-left:10%; margin-top: 40px;"><h1> Own a restaurant ? Join us </h1></div>
+					<div style=" margin-top: 9%;margin-left:10%;height:20%">
 						<h5><p> Looking to fill those empty seats, especially during those times when you're not as busy?
 						 BookMytable is a restaurant reservation platform which offers time-based  discounts up to  50% off, 
-						 every day at all of its 4000+ restaurants.
+						 every day at many restaurants.
 				    	</p></h5>
 					</div>
-					<a href="/restaurants">
-						<button type="button" class="btn btn-light Box">JOIN US</button>
+					<a href="/register_manager">
+						<button type="button" class="btn btn-warning Box">JOIN US</button>
 					</a>
 				</div>
+			</div>
 			</div>
 {% endblock content %}

@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from .models import * 
 from webapp.models import *
-from django.shortcuts import get_object_or_404
 
 # Create your views here.
 

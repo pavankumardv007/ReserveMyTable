@@ -1,16 +1,21 @@
-{% extends '../base.html' %} {% load static %} {% block title %} login {% endblock title %} {% block style %}
+{% extends '../base.html' %} 
+{% load static %} 
+{% block title %} login {% endblock title %} 
+{% block style %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}" />
-{% endblock style %} {% block content %}
+{% endblock style %} 
+{% block content %}
+
 
 <body>
-  <div>
+  <div class="conatiner">
     <div class="modal-dialog modal-login">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header mt-5">
           <div class="avatar">
             <img src="{% static 'images/user.png' %}" alt="Avatar" />
           </div>
-          <h4 class="modal-title">Guest Login</h4>
+          <h4 class="" style="color:black;">Guest Login</h4>
         </div>
         <div class="modal-body">
           <form action="/login_guest" method="post">
@@ -43,9 +48,6 @@
               </button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-outline-primary" href="/reset_password">Reset Password?</a>
         </div>
       </div>
     </div>
