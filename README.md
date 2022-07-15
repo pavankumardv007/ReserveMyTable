@@ -2,7 +2,7 @@
 
 ### Setup Instructions
 
-1. Add the `.env` file for the project to the root folder.
+1. Add the `.env` file for the project to the root folder , simialr to env.example 
 2. `pipenv shell`
 3. `pipenv install`
 4. `python manage.py migrate`
